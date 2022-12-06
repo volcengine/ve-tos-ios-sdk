@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1340"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2BA05A5F287D1EB400C470CA"
+               BuildableName = "VeTOSiOSSDK-Example.app"
+               BlueprintName = "VeTOSiOSSDK-Example"
+               ReferencedContainer = "container:VeTOSiOSSDK-Example.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2BA05AA1287D1EE600C470CA"
+               BuildableName = "VeTOSiOSSDK.framework"
+               BlueprintName = "VeTOSiOSSDK"
+               ReferencedContainer = "container:../VeTOSiOSSDK/VeTOSiOSSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2BA05AA1287D1EE600C470CA"
+            BuildableName = "VeTOSiOSSDK.framework"
+            BlueprintName = "VeTOSiOSSDK"
+            ReferencedContainer = "container:../VeTOSiOSSDK/VeTOSiOSSDK.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2BA05A7A287D1EB600C470CA"
+               BuildableName = "VeTOSiOSSDK-ExampleTests.xctest"
+               BlueprintName = "VeTOSiOSSDK-ExampleTests"
+               ReferencedContainer = "container:VeTOSiOSSDK-Example.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2BA05A84287D1EB600C470CA"
+               BuildableName = "VeTOSiOSSDK-ExampleUITests.xctest"
+               BlueprintName = "VeTOSiOSSDK-ExampleUITests"
+               ReferencedContainer = "container:VeTOSiOSSDK-Example.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2BAF44C528AB969B009CF7BF"
+               BuildableName = "VeTOSiOSSDKTests.xctest"
+               BlueprintName = "VeTOSiOSSDKTests"
+               ReferencedContainer = "container:VeTOSiOSSDK-Example.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2BA05A5F287D1EB400C470CA"
+            BuildableName = "VeTOSiOSSDK-Example.app"
+            BlueprintName = "VeTOSiOSSDK-Example"
+            ReferencedContainer = "container:VeTOSiOSSDK-Example.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2BA05A5F287D1EB400C470CA"
+            BuildableName = "VeTOSiOSSDK-Example.app"
+            BlueprintName = "VeTOSiOSSDK-Example"
+            ReferencedContainer = "container:VeTOSiOSSDK-Example.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

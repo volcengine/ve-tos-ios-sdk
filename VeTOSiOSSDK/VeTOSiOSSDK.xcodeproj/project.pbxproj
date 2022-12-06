@@ -1,0 +1,629 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B2BF86128E3FB2D0028B06D /* aos_crc64.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B2BF85F28E3FB2D0028B06D /* aos_crc64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B2BF86228E3FB2D0028B06D /* aos_crc64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BF86028E3FB2D0028B06D /* aos_crc64.m */; };
+		2B490804289C2DFF006AEA3C /* TOSModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B490802289C2DFF006AEA3C /* TOSModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B490805289C2DFF006AEA3C /* TOSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B490803289C2DFF006AEA3C /* TOSModel.m */; };
+		2B490808289C2E0D006AEA3C /* TOSOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B490806289C2E0D006AEA3C /* TOSOutput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B490809289C2E0D006AEA3C /* TOSOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B490807289C2E0D006AEA3C /* TOSOutput.m */; };
+		2B49080D289CB98B006AEA3C /* TOSSignV4.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B49080B289CB98B006AEA3C /* TOSSignV4.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B49080E289CB98B006AEA3C /* TOSSignV4.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B49080C289CB98B006AEA3C /* TOSSignV4.m */; };
+		2B490811289E0FDD006AEA3C /* TOSNetworkingResponseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B49080F289E0FDD006AEA3C /* TOSNetworkingResponseParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B490812289E0FDD006AEA3C /* TOSNetworkingResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B490810289E0FDD006AEA3C /* TOSNetworkingResponseParser.m */; };
+		2B99F9A028ADDD3200899C42 /* TOSConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B99F99E28ADDD3200899C42 /* TOSConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B99F9A128ADDD3200899C42 /* TOSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99F99F28ADDD3200899C42 /* TOSConstants.m */; };
+		2BA05AA7287D1EE600C470CA /* VeTOSiOSSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2BA05AA6287D1EE600C470CA /* VeTOSiOSSDK.docc */; };
+		2BA05AB3287D1EE600C470CA /* VeTOSiOSSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BA05AA5287D1EE600C470CA /* VeTOSiOSSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BA05B132880260D00C470CA /* TOSNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BA05B112880260C00C470CA /* TOSNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BA05B142880260D00C470CA /* TOSNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA05B122880260D00C470CA /* TOSNetworking.m */; };
+		2BAF449F28A01E28009CF7BF /* TOSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BAF449D28A01E28009CF7BF /* TOSUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BAF44A028A01E28009CF7BF /* TOSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF449E28A01E28009CF7BF /* TOSUtil.m */; };
+		2BAF44A328AB4609009CF7BF /* TOSSignV4Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BAF44A128AB4609009CF7BF /* TOSSignV4Util.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BAF44A428AB4609009CF7BF /* TOSSignV4Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF44A228AB4609009CF7BF /* TOSSignV4Util.m */; };
+		2BBD8CBF289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BBD8CBD289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BBD8CC0289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD8CBE289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.m */; };
+		2BBD8CD12892A51200E9AAD1 /* TOSRequestHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BBD8CD02892A51200E9AAD1 /* TOSRequestHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BC1253E28855EE9000A5A1D /* TOSInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BC1253C28855EE9000A5A1D /* TOSInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BC1253F28855EE9000A5A1D /* TOSInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1253D28855EE9000A5A1D /* TOSInput.m */; };
+		2BC1254B28857B44000A5A1D /* NSDate+TOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BC1254928857B44000A5A1D /* NSDate+TOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BC1254C28857B44000A5A1D /* NSDate+TOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1254A28857B44000A5A1D /* NSDate+TOS.m */; };
+		2BC1254F28858373000A5A1D /* TOSEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BC1254D28858373000A5A1D /* TOSEndpoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BC1255028858373000A5A1D /* TOSEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1254E28858373000A5A1D /* TOSEndpoint.m */; };
+		2BC1255328858434000A5A1D /* TOSCredential.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BC1255128858434000A5A1D /* TOSCredential.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BC1255428858434000A5A1D /* TOSCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1255228858434000A5A1D /* TOSCredential.m */; };
+		2BC125572885851C000A5A1D /* NSString+TOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BC125552885851C000A5A1D /* NSString+TOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BC125582885851C000A5A1D /* NSString+TOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC125562885851C000A5A1D /* NSString+TOS.m */; };
+		2BD2C2EB28AD61F50064D012 /* TOSNetworkingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B52526D28AD3BE800FC1B99 /* TOSNetworkingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BD2C2EC28AD61FA0064D012 /* TOSTaskHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B52526E28AD3CDC00FC1B99 /* TOSTaskHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BD2C2ED28AD62010064D012 /* TOSAuthenticationHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B52527028AD3D0100FC1B99 /* TOSAuthenticationHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BD2C2EE28AD621B0064D012 /* TOSUtilityHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B52527128AD3D1800FC1B99 /* TOSUtilityHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BD2C2F128AD62C50064D012 /* TOSClientHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B52526F28AD3CF000FC1B99 /* TOSClientHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BE9530F28A6345500EF8906 /* TOSURLRequestRetryHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BE9530D28A6345500EF8906 /* TOSURLRequestRetryHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BE9531028A6345500EF8906 /* TOSURLRequestRetryHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9530E28A6345500EF8906 /* TOSURLRequestRetryHandler.m */; };
+		2BEEFC812888F83E00AD840C /* TOSClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFC7F2888F83E00AD840C /* TOSClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFC822888F83E00AD840C /* TOSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFC802888F83E00AD840C /* TOSClient.m */; };
+		2BEEFC8D2889014E00AD840C /* TOSClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFC8B2889014E00AD840C /* TOSClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFC8E2889014E00AD840C /* TOSClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFC8C2889014E00AD840C /* TOSClientConfiguration.m */; };
+		2BEEFC912889248B00AD840C /* TOSGeneric.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFC902889248B00AD840C /* TOSGeneric.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFC942889256A00AD840C /* TOSCancellationTokenRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFC922889256A00AD840C /* TOSCancellationTokenRegistration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFC952889256A00AD840C /* TOSCancellationTokenRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFC932889256A00AD840C /* TOSCancellationTokenRegistration.m */; };
+		2BEEFC98288925C300AD840C /* TOSCancellationToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFC96288925C300AD840C /* TOSCancellationToken.m */; };
+		2BEEFC99288925C300AD840C /* TOSCancellationToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFC97288925C300AD840C /* TOSCancellationToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFC9C2889264A00AD840C /* TOSBolts.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFC9A2889264A00AD840C /* TOSBolts.m */; };
+		2BEEFC9D2889264A00AD840C /* TOSBolts.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFC9B2889264A00AD840C /* TOSBolts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFCA0288926CE00AD840C /* TOSCancellationTokenSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFC9E288926CE00AD840C /* TOSCancellationTokenSource.m */; };
+		2BEEFCA1288926CE00AD840C /* TOSCancellationTokenSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFC9F288926CE00AD840C /* TOSCancellationTokenSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFCA42889270500AD840C /* TOSExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFCA22889270500AD840C /* TOSExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFCA52889270500AD840C /* TOSExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFCA32889270500AD840C /* TOSExecutor.m */; };
+		2BEEFCA82889273B00AD840C /* TOSTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFCA62889273B00AD840C /* TOSTask.m */; };
+		2BEEFCA92889273B00AD840C /* TOSTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFCA72889273B00AD840C /* TOSTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFCAC288927AA00AD840C /* TOSTaskCompletionSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFCAA288927AA00AD840C /* TOSTaskCompletionSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFCAD288927AA00AD840C /* TOSTaskCompletionSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFCAB288927AA00AD840C /* TOSTaskCompletionSource.m */; };
+		2BEEFCB428893FAE00AD840C /* TOSNetworkingRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BEEFCB228893FAE00AD840C /* TOSNetworkingRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BEEFCB528893FAE00AD840C /* TOSNetworkingRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEFCB328893FAE00AD840C /* TOSNetworkingRequestDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B2BF85F28E3FB2D0028B06D /* aos_crc64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aos_crc64.h; sourceTree = "<group>"; };
+		2B2BF86028E3FB2D0028B06D /* aos_crc64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aos_crc64.m; sourceTree = "<group>"; };
+		2B490802289C2DFF006AEA3C /* TOSModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSModel.h; sourceTree = "<group>"; };
+		2B490803289C2DFF006AEA3C /* TOSModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSModel.m; sourceTree = "<group>"; };
+		2B490806289C2E0D006AEA3C /* TOSOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSOutput.h; sourceTree = "<group>"; };
+		2B490807289C2E0D006AEA3C /* TOSOutput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSOutput.m; sourceTree = "<group>"; };
+		2B49080B289CB98B006AEA3C /* TOSSignV4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSSignV4.h; sourceTree = "<group>"; };
+		2B49080C289CB98B006AEA3C /* TOSSignV4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSSignV4.m; sourceTree = "<group>"; };
+		2B49080F289E0FDD006AEA3C /* TOSNetworkingResponseParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSNetworkingResponseParser.h; sourceTree = "<group>"; };
+		2B490810289E0FDD006AEA3C /* TOSNetworkingResponseParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSNetworkingResponseParser.m; sourceTree = "<group>"; };
+		2B52526D28AD3BE800FC1B99 /* TOSNetworkingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSNetworkingHeader.h; sourceTree = "<group>"; };
+		2B52526E28AD3CDC00FC1B99 /* TOSTaskHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSTaskHeader.h; sourceTree = "<group>"; };
+		2B52526F28AD3CF000FC1B99 /* TOSClientHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSClientHeader.h; sourceTree = "<group>"; };
+		2B52527028AD3D0100FC1B99 /* TOSAuthenticationHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSAuthenticationHeader.h; sourceTree = "<group>"; };
+		2B52527128AD3D1800FC1B99 /* TOSUtilityHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSUtilityHeader.h; sourceTree = "<group>"; };
+		2B99F99E28ADDD3200899C42 /* TOSConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSConstants.h; sourceTree = "<group>"; };
+		2B99F99F28ADDD3200899C42 /* TOSConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSConstants.m; sourceTree = "<group>"; };
+		2BA05AA2287D1EE600C470CA /* VeTOSiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeTOSiOSSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BA05AA5287D1EE600C470CA /* VeTOSiOSSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeTOSiOSSDK.h; sourceTree = "<group>"; };
+		2BA05AA6287D1EE600C470CA /* VeTOSiOSSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = VeTOSiOSSDK.docc; sourceTree = "<group>"; };
+		2BA05B112880260C00C470CA /* TOSNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSNetworking.h; sourceTree = "<group>"; };
+		2BA05B122880260D00C470CA /* TOSNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSNetworking.m; sourceTree = "<group>"; };
+		2BAF449D28A01E28009CF7BF /* TOSUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSUtil.h; sourceTree = "<group>"; };
+		2BAF449E28A01E28009CF7BF /* TOSUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSUtil.m; sourceTree = "<group>"; };
+		2BAF44A128AB4609009CF7BF /* TOSSignV4Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSSignV4Util.h; sourceTree = "<group>"; };
+		2BAF44A228AB4609009CF7BF /* TOSSignV4Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSSignV4Util.m; sourceTree = "<group>"; };
+		2BBD8CBD289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSSynchronizedMutableDictionary.h; sourceTree = "<group>"; };
+		2BBD8CBE289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSSynchronizedMutableDictionary.m; sourceTree = "<group>"; };
+		2BBD8CD02892A51200E9AAD1 /* TOSRequestHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSRequestHeader.h; sourceTree = "<group>"; };
+		2BC1253C28855EE9000A5A1D /* TOSInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSInput.h; sourceTree = "<group>"; };
+		2BC1253D28855EE9000A5A1D /* TOSInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSInput.m; sourceTree = "<group>"; };
+		2BC1254928857B44000A5A1D /* NSDate+TOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+TOS.h"; sourceTree = "<group>"; };
+		2BC1254A28857B44000A5A1D /* NSDate+TOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TOS.m"; sourceTree = "<group>"; };
+		2BC1254D28858373000A5A1D /* TOSEndpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSEndpoint.h; sourceTree = "<group>"; };
+		2BC1254E28858373000A5A1D /* TOSEndpoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSEndpoint.m; sourceTree = "<group>"; };
+		2BC1255128858434000A5A1D /* TOSCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSCredential.h; sourceTree = "<group>"; };
+		2BC1255228858434000A5A1D /* TOSCredential.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSCredential.m; sourceTree = "<group>"; };
+		2BC125552885851C000A5A1D /* NSString+TOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+TOS.h"; sourceTree = "<group>"; };
+		2BC125562885851C000A5A1D /* NSString+TOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+TOS.m"; sourceTree = "<group>"; };
+		2BE9530D28A6345500EF8906 /* TOSURLRequestRetryHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSURLRequestRetryHandler.h; sourceTree = "<group>"; };
+		2BE9530E28A6345500EF8906 /* TOSURLRequestRetryHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSURLRequestRetryHandler.m; sourceTree = "<group>"; };
+		2BEEFC7F2888F83E00AD840C /* TOSClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSClient.h; sourceTree = "<group>"; };
+		2BEEFC802888F83E00AD840C /* TOSClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSClient.m; sourceTree = "<group>"; };
+		2BEEFC8B2889014E00AD840C /* TOSClientConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSClientConfiguration.h; sourceTree = "<group>"; };
+		2BEEFC8C2889014E00AD840C /* TOSClientConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSClientConfiguration.m; sourceTree = "<group>"; };
+		2BEEFC902889248B00AD840C /* TOSGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSGeneric.h; sourceTree = "<group>"; };
+		2BEEFC922889256A00AD840C /* TOSCancellationTokenRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSCancellationTokenRegistration.h; sourceTree = "<group>"; };
+		2BEEFC932889256A00AD840C /* TOSCancellationTokenRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSCancellationTokenRegistration.m; sourceTree = "<group>"; };
+		2BEEFC96288925C300AD840C /* TOSCancellationToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSCancellationToken.m; sourceTree = "<group>"; };
+		2BEEFC97288925C300AD840C /* TOSCancellationToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSCancellationToken.h; sourceTree = "<group>"; };
+		2BEEFC9A2889264A00AD840C /* TOSBolts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSBolts.m; sourceTree = "<group>"; };
+		2BEEFC9B2889264A00AD840C /* TOSBolts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSBolts.h; sourceTree = "<group>"; };
+		2BEEFC9E288926CE00AD840C /* TOSCancellationTokenSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSCancellationTokenSource.m; sourceTree = "<group>"; };
+		2BEEFC9F288926CE00AD840C /* TOSCancellationTokenSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSCancellationTokenSource.h; sourceTree = "<group>"; };
+		2BEEFCA22889270500AD840C /* TOSExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSExecutor.h; sourceTree = "<group>"; };
+		2BEEFCA32889270500AD840C /* TOSExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSExecutor.m; sourceTree = "<group>"; };
+		2BEEFCA62889273B00AD840C /* TOSTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSTask.m; sourceTree = "<group>"; };
+		2BEEFCA72889273B00AD840C /* TOSTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSTask.h; sourceTree = "<group>"; };
+		2BEEFCAA288927AA00AD840C /* TOSTaskCompletionSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSTaskCompletionSource.h; sourceTree = "<group>"; };
+		2BEEFCAB288927AA00AD840C /* TOSTaskCompletionSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSTaskCompletionSource.m; sourceTree = "<group>"; };
+		2BEEFCB228893FAE00AD840C /* TOSNetworkingRequestDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSNetworkingRequestDelegate.h; sourceTree = "<group>"; };
+		2BEEFCB328893FAE00AD840C /* TOSNetworkingRequestDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSNetworkingRequestDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2BA05A9F287D1EE600C470CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B49080A289C311D006AEA3C /* TOSNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				2BA05B112880260C00C470CA /* TOSNetworking.h */,
+				2BA05B122880260D00C470CA /* TOSNetworking.m */,
+				2BEEFCB328893FAE00AD840C /* TOSNetworkingRequestDelegate.m */,
+				2BEEFCB228893FAE00AD840C /* TOSNetworkingRequestDelegate.h */,
+				2BC1254D28858373000A5A1D /* TOSEndpoint.h */,
+				2BC1254E28858373000A5A1D /* TOSEndpoint.m */,
+				2B49080F289E0FDD006AEA3C /* TOSNetworkingResponseParser.h */,
+				2B490810289E0FDD006AEA3C /* TOSNetworkingResponseParser.m */,
+				2BE9530D28A6345500EF8906 /* TOSURLRequestRetryHandler.h */,
+				2BE9530E28A6345500EF8906 /* TOSURLRequestRetryHandler.m */,
+				2B52526D28AD3BE800FC1B99 /* TOSNetworkingHeader.h */,
+			);
+			path = TOSNetworking;
+			sourceTree = "<group>";
+		};
+		2BA05A98287D1EE600C470CA = {
+			isa = PBXGroup;
+			children = (
+				2BA05AA4287D1EE600C470CA /* VeTOSiOSSDK */,
+				2BA05AA3287D1EE600C470CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2BA05AA3287D1EE600C470CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2BA05AA2287D1EE600C470CA /* VeTOSiOSSDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2BA05AA4287D1EE600C470CA /* VeTOSiOSSDK */ = {
+			isa = PBXGroup;
+			children = (
+				2B49080A289C311D006AEA3C /* TOSNetworking */,
+				2BEEFC8F288923FC00AD840C /* TOSTask */,
+				2BBD8CC728929A0600E9AAD1 /* Request */,
+				2BEEFC7E2888F82000AD840C /* Client */,
+				2BEEFC792888F47E00AD840C /* Authentication */,
+				2BC1254428857A7E000A5A1D /* Utility */,
+				2BA05AA5287D1EE600C470CA /* VeTOSiOSSDK.h */,
+				2BA05AA6287D1EE600C470CA /* VeTOSiOSSDK.docc */,
+			);
+			path = VeTOSiOSSDK;
+			sourceTree = "<group>";
+		};
+		2BBD8CC728929A0600E9AAD1 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2BBD8CD02892A51200E9AAD1 /* TOSRequestHeader.h */,
+				2BC1253C28855EE9000A5A1D /* TOSInput.h */,
+				2BC1253D28855EE9000A5A1D /* TOSInput.m */,
+				2B490802289C2DFF006AEA3C /* TOSModel.h */,
+				2B490803289C2DFF006AEA3C /* TOSModel.m */,
+				2B490806289C2E0D006AEA3C /* TOSOutput.h */,
+				2B490807289C2E0D006AEA3C /* TOSOutput.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		2BC1254428857A7E000A5A1D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2BC1254928857B44000A5A1D /* NSDate+TOS.h */,
+				2BC1254A28857B44000A5A1D /* NSDate+TOS.m */,
+				2BC125552885851C000A5A1D /* NSString+TOS.h */,
+				2BC125562885851C000A5A1D /* NSString+TOS.m */,
+				2BBD8CBD289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.h */,
+				2BBD8CBE289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.m */,
+				2BAF449D28A01E28009CF7BF /* TOSUtil.h */,
+				2BAF449E28A01E28009CF7BF /* TOSUtil.m */,
+				2B52527128AD3D1800FC1B99 /* TOSUtilityHeader.h */,
+				2B99F99E28ADDD3200899C42 /* TOSConstants.h */,
+				2B99F99F28ADDD3200899C42 /* TOSConstants.m */,
+				2B2BF85F28E3FB2D0028B06D /* aos_crc64.h */,
+				2B2BF86028E3FB2D0028B06D /* aos_crc64.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		2BEEFC792888F47E00AD840C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2BC1255128858434000A5A1D /* TOSCredential.h */,
+				2BC1255228858434000A5A1D /* TOSCredential.m */,
+				2B49080B289CB98B006AEA3C /* TOSSignV4.h */,
+				2B49080C289CB98B006AEA3C /* TOSSignV4.m */,
+				2BAF44A128AB4609009CF7BF /* TOSSignV4Util.h */,
+				2BAF44A228AB4609009CF7BF /* TOSSignV4Util.m */,
+				2B52527028AD3D0100FC1B99 /* TOSAuthenticationHeader.h */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		2BEEFC7E2888F82000AD840C /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				2BEEFC8B2889014E00AD840C /* TOSClientConfiguration.h */,
+				2BEEFC8C2889014E00AD840C /* TOSClientConfiguration.m */,
+				2BEEFC7F2888F83E00AD840C /* TOSClient.h */,
+				2BEEFC802888F83E00AD840C /* TOSClient.m */,
+				2B52526F28AD3CF000FC1B99 /* TOSClientHeader.h */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		2BEEFC8F288923FC00AD840C /* TOSTask */ = {
+			isa = PBXGroup;
+			children = (
+				2BEEFC902889248B00AD840C /* TOSGeneric.h */,
+				2BEEFC9B2889264A00AD840C /* TOSBolts.h */,
+				2BEEFC9A2889264A00AD840C /* TOSBolts.m */,
+				2BEEFCA72889273B00AD840C /* TOSTask.h */,
+				2BEEFCA62889273B00AD840C /* TOSTask.m */,
+				2BEEFC922889256A00AD840C /* TOSCancellationTokenRegistration.h */,
+				2BEEFC932889256A00AD840C /* TOSCancellationTokenRegistration.m */,
+				2BEEFC97288925C300AD840C /* TOSCancellationToken.h */,
+				2BEEFC96288925C300AD840C /* TOSCancellationToken.m */,
+				2BEEFC9F288926CE00AD840C /* TOSCancellationTokenSource.h */,
+				2BEEFC9E288926CE00AD840C /* TOSCancellationTokenSource.m */,
+				2BEEFCA22889270500AD840C /* TOSExecutor.h */,
+				2BEEFCA32889270500AD840C /* TOSExecutor.m */,
+				2BEEFCAA288927AA00AD840C /* TOSTaskCompletionSource.h */,
+				2BEEFCAB288927AA00AD840C /* TOSTaskCompletionSource.m */,
+				2B52526E28AD3CDC00FC1B99 /* TOSTaskHeader.h */,
+			);
+			path = TOSTask;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2BA05A9D287D1EE600C470CA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BC1254F28858373000A5A1D /* TOSEndpoint.h in Headers */,
+				2BEEFC9D2889264A00AD840C /* TOSBolts.h in Headers */,
+				2BEEFCA1288926CE00AD840C /* TOSCancellationTokenSource.h in Headers */,
+				2BEEFC812888F83E00AD840C /* TOSClient.h in Headers */,
+				2BEEFC942889256A00AD840C /* TOSCancellationTokenRegistration.h in Headers */,
+				2BD2C2ED28AD62010064D012 /* TOSAuthenticationHeader.h in Headers */,
+				2BEEFC912889248B00AD840C /* TOSGeneric.h in Headers */,
+				2BEEFCA42889270500AD840C /* TOSExecutor.h in Headers */,
+				2BEEFCAC288927AA00AD840C /* TOSTaskCompletionSource.h in Headers */,
+				2BD2C2EB28AD61F50064D012 /* TOSNetworkingHeader.h in Headers */,
+				2BEEFCA92889273B00AD840C /* TOSTask.h in Headers */,
+				2BEEFC8D2889014E00AD840C /* TOSClientConfiguration.h in Headers */,
+				2BEEFC99288925C300AD840C /* TOSCancellationToken.h in Headers */,
+				2BC1254B28857B44000A5A1D /* NSDate+TOS.h in Headers */,
+				2BC1255328858434000A5A1D /* TOSCredential.h in Headers */,
+				2BC125572885851C000A5A1D /* NSString+TOS.h in Headers */,
+				2BC1253E28855EE9000A5A1D /* TOSInput.h in Headers */,
+				2BA05AB3287D1EE600C470CA /* VeTOSiOSSDK.h in Headers */,
+				2BEEFCB428893FAE00AD840C /* TOSNetworkingRequestDelegate.h in Headers */,
+				2BBD8CBF289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.h in Headers */,
+				2B490808289C2E0D006AEA3C /* TOSOutput.h in Headers */,
+				2BBD8CD12892A51200E9AAD1 /* TOSRequestHeader.h in Headers */,
+				2B490811289E0FDD006AEA3C /* TOSNetworkingResponseParser.h in Headers */,
+				2BAF449F28A01E28009CF7BF /* TOSUtil.h in Headers */,
+				2B490804289C2DFF006AEA3C /* TOSModel.h in Headers */,
+				2B49080D289CB98B006AEA3C /* TOSSignV4.h in Headers */,
+				2BD2C2F128AD62C50064D012 /* TOSClientHeader.h in Headers */,
+				2BD2C2EE28AD621B0064D012 /* TOSUtilityHeader.h in Headers */,
+				2BE9530F28A6345500EF8906 /* TOSURLRequestRetryHandler.h in Headers */,
+				2BD2C2EC28AD61FA0064D012 /* TOSTaskHeader.h in Headers */,
+				2B2BF86128E3FB2D0028B06D /* aos_crc64.h in Headers */,
+				2BAF44A328AB4609009CF7BF /* TOSSignV4Util.h in Headers */,
+				2B99F9A028ADDD3200899C42 /* TOSConstants.h in Headers */,
+				2BA05B132880260D00C470CA /* TOSNetworking.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2BA05AA1287D1EE600C470CA /* VeTOSiOSSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BA05AB6287D1EE600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK" */;
+			buildPhases = (
+				2BA05A9D287D1EE600C470CA /* Headers */,
+				2BA05A9E287D1EE600C470CA /* Sources */,
+				2BA05A9F287D1EE600C470CA /* Frameworks */,
+				2BA05AA0287D1EE600C470CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VeTOSiOSSDK;
+			productName = VeTOSiOSSDK;
+			productReference = 2BA05AA2287D1EE600C470CA /* VeTOSiOSSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2BA05A99287D1EE600C470CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					2BA05AA1287D1EE600C470CA = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 2BA05A9C287D1EE600C470CA /* Build configuration list for PBXProject "VeTOSiOSSDK" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2BA05A98287D1EE600C470CA;
+			productRefGroup = 2BA05A98287D1EE600C470CA;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2BA05AA1287D1EE600C470CA /* VeTOSiOSSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BA05AA0287D1EE600C470CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2BA05A9E287D1EE600C470CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BEEFC8E2889014E00AD840C /* TOSClientConfiguration.m in Sources */,
+				2B490805289C2DFF006AEA3C /* TOSModel.m in Sources */,
+				2BEEFCB528893FAE00AD840C /* TOSNetworkingRequestDelegate.m in Sources */,
+				2BC1254C28857B44000A5A1D /* NSDate+TOS.m in Sources */,
+				2B99F9A128ADDD3200899C42 /* TOSConstants.m in Sources */,
+				2BC1253F28855EE9000A5A1D /* TOSInput.m in Sources */,
+				2BC1253F28855EE9000A5A1D /* TOSInput.m in Sources */,
+				2BEEFCAD288927AA00AD840C /* TOSTaskCompletionSource.m in Sources */,
+				2BC125582885851C000A5A1D /* NSString+TOS.m in Sources */,
+				2BEEFC98288925C300AD840C /* TOSCancellationToken.m in Sources */,
+				2BC1255028858373000A5A1D /* TOSEndpoint.m in Sources */,
+				2BAF44A028A01E28009CF7BF /* TOSUtil.m in Sources */,
+				2BE9531028A6345500EF8906 /* TOSURLRequestRetryHandler.m in Sources */,
+				2BC1255428858434000A5A1D /* TOSCredential.m in Sources */,
+				2BEEFC952889256A00AD840C /* TOSCancellationTokenRegistration.m in Sources */,
+				2BEEFC822888F83E00AD840C /* TOSClient.m in Sources */,
+				2BAF44A428AB4609009CF7BF /* TOSSignV4Util.m in Sources */,
+				2B49080E289CB98B006AEA3C /* TOSSignV4.m in Sources */,
+				2B2BF86228E3FB2D0028B06D /* aos_crc64.m in Sources */,
+				2BEEFC9C2889264A00AD840C /* TOSBolts.m in Sources */,
+				2B490812289E0FDD006AEA3C /* TOSNetworkingResponseParser.m in Sources */,
+				2BEEFCA0288926CE00AD840C /* TOSCancellationTokenSource.m in Sources */,
+				2BA05B142880260D00C470CA /* TOSNetworking.m in Sources */,
+				2BBD8CC0289271FB00E9AAD1 /* TOSSynchronizedMutableDictionary.m in Sources */,
+				2BEEFCA52889270500AD840C /* TOSExecutor.m in Sources */,
+				2B490809289C2E0D006AEA3C /* TOSOutput.m in Sources */,
+				2BEEFCA82889273B00AD840C /* TOSTask.m in Sources */,
+				2BA05AA7287D1EE600C470CA /* VeTOSiOSSDK.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2BA05AB4287D1EE600C470CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2BA05AB5287D1EE600C470CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2BA05AB7287D1EE600C470CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ve.tos.VeTOSiOSSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2BA05AB8287D1EE600C470CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ve.tos.VeTOSiOSSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2BA05A9C287D1EE600C470CA /* Build configuration list for PBXProject "VeTOSiOSSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BA05AB4287D1EE600C470CA /* Debug */,
+				2BA05AB5287D1EE600C470CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BA05AB6287D1EE600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BA05AB7287D1EE600C470CA /* Debug */,
+				2BA05AB8287D1EE600C470CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2BA05A99287D1EE600C470CA /* Project object */;
+}

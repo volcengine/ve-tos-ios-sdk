@@ -1,0 +1,749 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B18A48B28BFCAC8009DC909 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B18A48A28BFCAC8009DC909 /* image.png */; };
+		2B27064629271BF400275903 /* TOSUploadFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B27064529271BF400275903 /* TOSUploadFileTests.m */; };
+		2B52524828ABC9FC00FC1B99 /* TOSObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B52524728ABC9FC00FC1B99 /* TOSObjectTests.m */; };
+		2B99F9A328ADF89100899C42 /* TOSMultipartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99F9A228ADF89100899C42 /* TOSMultipartTests.m */; };
+		2B99F9A728AE584B00899C42 /* PreSignTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99F9A628AE584B00899C42 /* PreSignTests.m */; };
+		2BA05A65287D1EB400C470CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA05A64287D1EB400C470CA /* AppDelegate.m */; };
+		2BA05A68287D1EB400C470CA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA05A67287D1EB400C470CA /* SceneDelegate.m */; };
+		2BA05A6B287D1EB400C470CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA05A6A287D1EB400C470CA /* ViewController.m */; };
+		2BA05A6E287D1EB400C470CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA05A6C287D1EB400C470CA /* Main.storyboard */; };
+		2BA05A70287D1EB500C470CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BA05A6F287D1EB500C470CA /* Assets.xcassets */; };
+		2BA05A73287D1EB500C470CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA05A71287D1EB500C470CA /* LaunchScreen.storyboard */; };
+		2BA05A76287D1EB500C470CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA05A75287D1EB500C470CA /* main.m */; };
+		2BAF44C928AB969B009CF7BF /* VeTOSiOSSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF44C828AB969B009CF7BF /* VeTOSiOSSDKTests.m */; };
+		2BAF44D028AB96D0009CF7BF /* TOSBucketTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF44CF28AB96D0009CF7BF /* TOSBucketTests.m */; };
+		2BAF44D528AB99FB009CF7BF /* TOSTestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF44D428AB99FB009CF7BF /* TOSTestUtil.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2BA05A7C287D1EB600C470CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BA05A58287D1EB400C470CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BA05A5F287D1EB400C470CA;
+			remoteInfo = "VeTOSiOSSDK-Example";
+		};
+		2BA05A86287D1EB600C470CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BA05A58287D1EB400C470CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BA05A5F287D1EB400C470CA;
+			remoteInfo = "VeTOSiOSSDK-Example";
+		};
+		2BAF44CA28AB969B009CF7BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BA05A58287D1EB400C470CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BA05A5F287D1EB400C470CA;
+			remoteInfo = "VeTOSiOSSDK-Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2B0D166A28895F5200BC6A19 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2B18A48A28BFCAC8009DC909 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		2B27064529271BF400275903 /* TOSUploadFileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSUploadFileTests.m; sourceTree = "<group>"; };
+		2B52524628ABC83600FC1B99 /* TOSTestConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSTestConstants.h; sourceTree = "<group>"; };
+		2B52524728ABC9FC00FC1B99 /* TOSObjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSObjectTests.m; sourceTree = "<group>"; };
+		2B99F9A228ADF89100899C42 /* TOSMultipartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSMultipartTests.m; sourceTree = "<group>"; };
+		2B99F9A628AE584B00899C42 /* PreSignTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreSignTests.m; sourceTree = "<group>"; };
+		2BA05A60287D1EB400C470CA /* VeTOSiOSSDK-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VeTOSiOSSDK-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BA05A63287D1EB400C470CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2BA05A64287D1EB400C470CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2BA05A66287D1EB400C470CA /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		2BA05A67287D1EB400C470CA /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		2BA05A69287D1EB400C470CA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2BA05A6A287D1EB400C470CA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2BA05A6D287D1EB400C470CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2BA05A6F287D1EB500C470CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2BA05A72287D1EB500C470CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2BA05A74287D1EB500C470CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BA05A75287D1EB500C470CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2BA05A7B287D1EB600C470CA /* VeTOSiOSSDK-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VeTOSiOSSDK-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BA05A85287D1EB600C470CA /* VeTOSiOSSDK-ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VeTOSiOSSDK-ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BAF44C628AB969B009CF7BF /* VeTOSiOSSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VeTOSiOSSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BAF44C828AB969B009CF7BF /* VeTOSiOSSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeTOSiOSSDKTests.m; sourceTree = "<group>"; };
+		2BAF44CF28AB96D0009CF7BF /* TOSBucketTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSBucketTests.m; sourceTree = "<group>"; };
+		2BAF44D328AB99FB009CF7BF /* TOSTestUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSTestUtil.h; sourceTree = "<group>"; };
+		2BAF44D428AB99FB009CF7BF /* TOSTestUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSTestUtil.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2BA05A5D287D1EB400C470CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BA05A78287D1EB600C470CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BA05A82287D1EB600C470CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BAF44C328AB969B009CF7BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B18A47F28BF383D009DC909 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2B18A48A28BFCAC8009DC909 /* image.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2BA05A57287D1EB400C470CA = {
+			isa = PBXGroup;
+			children = (
+				2BA05A62287D1EB400C470CA /* VeTOSiOSSDK-Example */,
+				2BAF44C728AB969B009CF7BF /* VeTOSiOSSDKTests */,
+				2BA05A61287D1EB400C470CA /* Products */,
+				2BA05B0B287D242C00C470CA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2BA05A61287D1EB400C470CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2BA05A60287D1EB400C470CA /* VeTOSiOSSDK-Example.app */,
+				2BA05A7B287D1EB600C470CA /* VeTOSiOSSDK-ExampleTests.xctest */,
+				2BA05A85287D1EB600C470CA /* VeTOSiOSSDK-ExampleUITests.xctest */,
+				2BAF44C628AB969B009CF7BF /* VeTOSiOSSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2BA05A62287D1EB400C470CA /* VeTOSiOSSDK-Example */ = {
+			isa = PBXGroup;
+			children = (
+				2B18A47F28BF383D009DC909 /* Resources */,
+				2BA05A63287D1EB400C470CA /* AppDelegate.h */,
+				2BA05A64287D1EB400C470CA /* AppDelegate.m */,
+				2BA05A66287D1EB400C470CA /* SceneDelegate.h */,
+				2BA05A67287D1EB400C470CA /* SceneDelegate.m */,
+				2BA05A69287D1EB400C470CA /* ViewController.h */,
+				2BA05A6A287D1EB400C470CA /* ViewController.m */,
+				2BA05A6C287D1EB400C470CA /* Main.storyboard */,
+				2BA05A6F287D1EB500C470CA /* Assets.xcassets */,
+				2BA05A71287D1EB500C470CA /* LaunchScreen.storyboard */,
+				2BA05A74287D1EB500C470CA /* Info.plist */,
+				2BA05A75287D1EB500C470CA /* main.m */,
+			);
+			path = "VeTOSiOSSDK-Example";
+			sourceTree = "<group>";
+		};
+		2BA05B0B287D242C00C470CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2BAF44C728AB969B009CF7BF /* VeTOSiOSSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				2BAF44C828AB969B009CF7BF /* VeTOSiOSSDKTests.m */,
+				2BAF44CF28AB96D0009CF7BF /* TOSBucketTests.m */,
+				2BAF44D328AB99FB009CF7BF /* TOSTestUtil.h */,
+				2BAF44D428AB99FB009CF7BF /* TOSTestUtil.m */,
+				2B52524628ABC83600FC1B99 /* TOSTestConstants.h */,
+				2B52524728ABC9FC00FC1B99 /* TOSObjectTests.m */,
+				2B99F9A228ADF89100899C42 /* TOSMultipartTests.m */,
+				2B99F9A628AE584B00899C42 /* PreSignTests.m */,
+				2B27064529271BF400275903 /* TOSUploadFileTests.m */,
+			);
+			path = VeTOSiOSSDKTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2BA05A5F287D1EB400C470CA /* VeTOSiOSSDK-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BA05A8F287D1EB600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK-Example" */;
+			buildPhases = (
+				2BA05A5C287D1EB400C470CA /* Sources */,
+				2BA05A5D287D1EB400C470CA /* Frameworks */,
+				2BA05A5E287D1EB400C470CA /* Resources */,
+				2B0D166A28895F5200BC6A19 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VeTOSiOSSDK-Example";
+			productName = "VeTOSiOSSDK-Example";
+			productReference = 2BA05A60287D1EB400C470CA /* VeTOSiOSSDK-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2BA05A7A287D1EB600C470CA /* VeTOSiOSSDK-ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BA05A92287D1EB600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK-ExampleTests" */;
+			buildPhases = (
+				2BA05A77287D1EB600C470CA /* Sources */,
+				2BA05A78287D1EB600C470CA /* Frameworks */,
+				2BA05A79287D1EB600C470CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BA05A7D287D1EB600C470CA /* PBXTargetDependency */,
+			);
+			name = "VeTOSiOSSDK-ExampleTests";
+			productName = "VeTOSiOSSDK-ExampleTests";
+			productReference = 2BA05A7B287D1EB600C470CA /* VeTOSiOSSDK-ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2BA05A84287D1EB600C470CA /* VeTOSiOSSDK-ExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BA05A95287D1EB600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK-ExampleUITests" */;
+			buildPhases = (
+				2BA05A81287D1EB600C470CA /* Sources */,
+				2BA05A82287D1EB600C470CA /* Frameworks */,
+				2BA05A83287D1EB600C470CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BA05A87287D1EB600C470CA /* PBXTargetDependency */,
+			);
+			name = "VeTOSiOSSDK-ExampleUITests";
+			productName = "VeTOSiOSSDK-ExampleUITests";
+			productReference = 2BA05A85287D1EB600C470CA /* VeTOSiOSSDK-ExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		2BAF44C528AB969B009CF7BF /* VeTOSiOSSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BAF44CE28AB969B009CF7BF /* Build configuration list for PBXNativeTarget "VeTOSiOSSDKTests" */;
+			buildPhases = (
+				2BAF44C228AB969B009CF7BF /* Sources */,
+				2BAF44C328AB969B009CF7BF /* Frameworks */,
+				2BAF44C428AB969B009CF7BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BAF44CB28AB969B009CF7BF /* PBXTargetDependency */,
+			);
+			name = VeTOSiOSSDKTests;
+			productName = VeTOSiOSSDKTests;
+			productReference = 2BAF44C628AB969B009CF7BF /* VeTOSiOSSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2BA05A58287D1EB400C470CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					2BA05A5F287D1EB400C470CA = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					2BA05A7A287D1EB600C470CA = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 2BA05A5F287D1EB400C470CA;
+					};
+					2BA05A84287D1EB600C470CA = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 2BA05A5F287D1EB400C470CA;
+					};
+					2BAF44C528AB969B009CF7BF = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 2BA05A5F287D1EB400C470CA;
+					};
+				};
+			};
+			buildConfigurationList = 2BA05A5B287D1EB400C470CA /* Build configuration list for PBXProject "VeTOSiOSSDK-Example" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2BA05A57287D1EB400C470CA;
+			productRefGroup = 2BA05A61287D1EB400C470CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2BA05A5F287D1EB400C470CA /* VeTOSiOSSDK-Example */,
+				2BA05A7A287D1EB600C470CA /* VeTOSiOSSDK-ExampleTests */,
+				2BA05A84287D1EB600C470CA /* VeTOSiOSSDK-ExampleUITests */,
+				2BAF44C528AB969B009CF7BF /* VeTOSiOSSDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BA05A5E287D1EB400C470CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BA05A73287D1EB500C470CA /* LaunchScreen.storyboard in Resources */,
+				2BA05A70287D1EB500C470CA /* Assets.xcassets in Resources */,
+				2BA05A6E287D1EB400C470CA /* Main.storyboard in Resources */,
+				2B18A48B28BFCAC8009DC909 /* image.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BA05A79287D1EB600C470CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BA05A83287D1EB600C470CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BAF44C428AB969B009CF7BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2BA05A5C287D1EB400C470CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BA05A6B287D1EB400C470CA /* ViewController.m in Sources */,
+				2BA05A65287D1EB400C470CA /* AppDelegate.m in Sources */,
+				2BA05A76287D1EB500C470CA /* main.m in Sources */,
+				2BA05A68287D1EB400C470CA /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BA05A77287D1EB600C470CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BA05A81287D1EB600C470CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BAF44C228AB969B009CF7BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BAF44D028AB96D0009CF7BF /* TOSBucketTests.m in Sources */,
+				2B99F9A328ADF89100899C42 /* TOSMultipartTests.m in Sources */,
+				2B99F9A728AE584B00899C42 /* PreSignTests.m in Sources */,
+				2BAF44D528AB99FB009CF7BF /* TOSTestUtil.m in Sources */,
+				2BAF44C928AB969B009CF7BF /* VeTOSiOSSDKTests.m in Sources */,
+				2B27064629271BF400275903 /* TOSUploadFileTests.m in Sources */,
+				2B52524828ABC9FC00FC1B99 /* TOSObjectTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2BA05A7D287D1EB600C470CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BA05A5F287D1EB400C470CA /* VeTOSiOSSDK-Example */;
+			targetProxy = 2BA05A7C287D1EB600C470CA /* PBXContainerItemProxy */;
+		};
+		2BA05A87287D1EB600C470CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BA05A5F287D1EB400C470CA /* VeTOSiOSSDK-Example */;
+			targetProxy = 2BA05A86287D1EB600C470CA /* PBXContainerItemProxy */;
+		};
+		2BAF44CB28AB969B009CF7BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BA05A5F287D1EB400C470CA /* VeTOSiOSSDK-Example */;
+			targetProxy = 2BAF44CA28AB969B009CF7BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2BA05A6C287D1EB400C470CA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BA05A6D287D1EB400C470CA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2BA05A71287D1EB500C470CA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BA05A72287D1EB500C470CA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2BA05A8D287D1EB600C470CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2BA05A8E287D1EB600C470CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2BA05A90287D1EB600C470CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VeTOSiOSSDK-Example/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ve.tos.VeTOSiOSSDK-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2BA05A91287D1EB600C470CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VeTOSiOSSDK-Example/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ve.tos.VeTOSiOSSDK-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2BA05A93287D1EB600C470CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ve.tos.VeTOSiOSSDK-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeTOSiOSSDK-Example.app/VeTOSiOSSDK-Example";
+			};
+			name = Debug;
+		};
+		2BA05A94287D1EB600C470CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ve.tos.VeTOSiOSSDK-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeTOSiOSSDK-Example.app/VeTOSiOSSDK-Example";
+			};
+			name = Release;
+		};
+		2BA05A96287D1EB600C470CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ve.tos.VeTOSiOSSDK-ExampleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "VeTOSiOSSDK-Example";
+			};
+			name = Debug;
+		};
+		2BA05A97287D1EB600C470CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ve.tos.VeTOSiOSSDK-ExampleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "VeTOSiOSSDK-Example";
+			};
+			name = Release;
+		};
+		2BAF44CC28AB969B009CF7BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ve.tos.VeTOSiOSSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeTOSiOSSDK-Example.app/VeTOSiOSSDK-Example";
+			};
+			name = Debug;
+		};
+		2BAF44CD28AB969B009CF7BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ve.tos.VeTOSiOSSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeTOSiOSSDK-Example.app/VeTOSiOSSDK-Example";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2BA05A5B287D1EB400C470CA /* Build configuration list for PBXProject "VeTOSiOSSDK-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BA05A8D287D1EB600C470CA /* Debug */,
+				2BA05A8E287D1EB600C470CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BA05A8F287D1EB600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BA05A90287D1EB600C470CA /* Debug */,
+				2BA05A91287D1EB600C470CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BA05A92287D1EB600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK-ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BA05A93287D1EB600C470CA /* Debug */,
+				2BA05A94287D1EB600C470CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BA05A95287D1EB600C470CA /* Build configuration list for PBXNativeTarget "VeTOSiOSSDK-ExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BA05A96287D1EB600C470CA /* Debug */,
+				2BA05A97287D1EB600C470CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BAF44CE28AB969B009CF7BF /* Build configuration list for PBXNativeTarget "VeTOSiOSSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BAF44CC28AB969B009CF7BF /* Debug */,
+				2BAF44CD28AB969B009CF7BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2BA05A58287D1EB400C470CA /* Project object */;
+}
