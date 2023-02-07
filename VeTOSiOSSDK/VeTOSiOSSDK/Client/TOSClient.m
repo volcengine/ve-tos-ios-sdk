@@ -990,7 +990,6 @@ static NSObject *uploadLock;
                 uploadPartData = [fileHandle readDataOfLength:(unsigned int)partInfo.tosPartSize];
             }
             
-            // TODO: 区分每个子任务的错误类型，判断是否需要abort任务和临时文件
             NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
                 TOSTask *uploadPartErrorTask = nil;
                 
@@ -1016,7 +1015,7 @@ static NSObject *uploadLock;
         } // autorelease
     } // for
     [fileHandle closeFile]; // 关闭文件句柄
-    // TODO: 统计所有完成的任务，确认是否所有part都上传成功（非黑名单错误码不产生abort错误，保留临时文件待下次使用）
+
     // newTosClientError("tos: some upload tasks failed.", nil)
     [queue waitUntilAllOperationsAreFinished]; // 等待所有子线程执行完毕
     localLock = nil;
@@ -1075,7 +1074,7 @@ static NSObject *uploadLock;
             return;
         }
         // 忽略其他错误（不abort此次上传临时文件），上传失败，等待用户重试
-        // TODO: 封装函数
+
         if (request.tosUploadEventListener) {
             TOSUploadEvent *event = [TOSUploadEvent new];
             event.tosType = TOSUploadEventUploadPartFailed;
