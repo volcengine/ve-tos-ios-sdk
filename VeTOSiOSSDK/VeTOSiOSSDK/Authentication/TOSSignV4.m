@@ -338,7 +338,7 @@
     }
 
     NSString *canonicalURI;
-    NSCharacterSet *pathChars = [NSCharacterSet URLPathAllowedCharacterSet];
+
     canonicalURI = [NSString stringWithFormat:@"/%@",
                              [TOSUtil URLEncode:pathToEncode]];
 
