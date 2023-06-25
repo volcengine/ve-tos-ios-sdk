@@ -16,6 +16,10 @@
 
 #import "TOSNetworkingResponseParser.h"
 
+@interface TOSNetworkingResponseParser()
+@property(nonatomic, strong) NSLock *lock;
+@end
+
 @implementation TOSNetworkingResponseParser
 {
     TOSOperationType _operationType;
@@ -35,6 +39,7 @@
 - (instancetype)initWithOperationType: (TOSOperationType)requestOperationType {
     if (self = [super init]) {
         _operationType = requestOperationType;
+        _lock = [[NSLock alloc] init];
     }
     return self;
 }
@@ -76,7 +81,9 @@
         if (!_receivedData) {
             _receivedData = [[NSMutableData alloc] initWithData:data];
         } else {
+            [_lock lock];
             [_receivedData appendData:data];
+            [_lock unlock];
         }
     }
     return [TOSTask taskWithResult:nil];
