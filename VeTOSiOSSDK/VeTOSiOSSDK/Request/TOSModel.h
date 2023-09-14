@@ -228,6 +228,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) int64_t tosRangeEnd;
 @property (nonatomic, copy) NSString *tosRange; // 格式为bytes=x-y，与RangeStart和RangeEnd互斥，如果设置了该参数，优先使用该参数
 
+@property (nonatomic, copy) NSString *tosProcess;
+
 //@property (nonatomic, copy) TOSNetworkingDownloadProgressBlock tosDownloadProgress; // 下载进度条
 @property (nonatomic, copy) TOSNetworkingOnRecieveDataBlock tosOnReceiveData;
 @end

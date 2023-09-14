@@ -87,6 +87,8 @@ extern TOSDownloadEventType const TOSDownloadEventDownloadPartAborted;
 extern TOSDownloadEventType const TOSDownloadEventRenameTempFileSucceed;
 extern TOSDownloadEventType const TOSDownloadEventRenameTempFileFailed;
 
+extern NSString * const TOSHTTPQueryProcess;
+
 //typedef void (^TOSNetworkingUploadProgressBlock) (int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend);
 //typedef void (^TOSNetworkingDownloadProgressBlock) (int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
 typedef void (^TOSNetworkingCompletionHandlerBlock) (id _Nullable responseObject, NSError * _Nullable error);

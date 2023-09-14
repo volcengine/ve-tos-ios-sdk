@@ -67,3 +67,4 @@ TOSUploadEventType const TOSUploadEventUploadPartAborted = 5; // 上传段中止
 TOSUploadEventType const TOSUploadEventCompleteMultipartUploadSucceed = 6; // 合并段成功
 TOSUploadEventType const TOSUploadEventCompleteMultipartUploadFailed = 7; // 合并段失败
 
+NSString * const TOSHTTPQueryProcess = @"x-tos-process";
