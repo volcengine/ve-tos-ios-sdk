@@ -309,6 +309,9 @@
     if (_tosVersionID) {
         [queryParams setValue:_tosVersionID forKey:@"versionId"];
     }
+    if (_tosProcess) {
+        [queryParams setValue:_tosProcess forKey:TOSHTTPQueryProcess];
+    }
     return queryParams;
 }
 

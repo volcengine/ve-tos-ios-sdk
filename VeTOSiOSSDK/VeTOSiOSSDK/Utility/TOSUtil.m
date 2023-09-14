@@ -21,7 +21,7 @@
 #import <VeTOSiOSSDK/TOSConstants.h>
 #import "aos_crc64.h"
 
-int32_t const CHUNK_SIZE = 8 * 1024;
+int32_t const TOS_CHUNK_SIZE = 8 * 1024;
 
 @implementation TOSUtil
 
@@ -206,7 +206,7 @@ int32_t const CHUNK_SIZE = 8 * 1024;
     BOOL done = NO;
     while(!done) {
         @autoreleasepool{
-            NSData* fileData = [handle readDataOfLength: CHUNK_SIZE];
+            NSData* fileData = [handle readDataOfLength: TOS_CHUNK_SIZE];
             CC_MD5_Update(&md5, [fileData bytes], (CC_LONG)[fileData length]);
             if([fileData length] == 0) {
                 done = YES;
@@ -250,10 +250,10 @@ int32_t const CHUNK_SIZE = 8 * 1024;
     }
     CC_MD5_CTX md5;
     CC_MD5_Init(&md5);
-    for (int i = 0; i < data.length; i += CHUNK_SIZE) {
+    for (int i = 0; i < data.length; i += TOS_CHUNK_SIZE) {
         NSData *subdata = nil;
-        if (i <= ((long)data.length - CHUNK_SIZE)) {
-            subdata = [data subdataWithRange:NSMakeRange(i, CHUNK_SIZE)];
+        if (i <= ((long)data.length - TOS_CHUNK_SIZE)) {
+            subdata = [data subdataWithRange:NSMakeRange(i, TOS_CHUNK_SIZE)];
             CC_MD5_Update(&md5, [subdata bytes], (CC_LONG)[subdata length]);
         } else {
             subdata = [data subdataWithRange:NSMakeRange(i, data.length - i)];

@@ -1109,7 +1109,8 @@
 }
 
 - (void)testAPI_putObjectFromDataWithSpecialKey {
-    NSArray *specialKeys = @[@"   ", @"a   b", @"a....b", @"a////b", @"\x20\x20", @"  \x22  \x23  ", @"\x7f\x7f", @"!-_.*()/&$@=;:+ ,?\{^}%`]>[~<#|'\"", @"http://unmi.cc?p1=%+&sd &p2=中文", @"dirA/dirB/dirC/dirD"];
+//    NSArray *specialKeys = @[@"   ", @"a   b", @"a....b", @"a////b", @"\x20\x20", @"  \x22  \x23  ", @"\x7f\x7f", @"!-_.*()/&$@=;:+ ,?\{^}%`]>[~<#|'\"", @"http://unmi.cc?p1=%+&sd &p2=中文", @"dirA/dirB/dirC/dirD"];
+    NSArray *specialKeys = @[@"   ", @"a   b", @"a....b", @"\x20\x20", @"  \x22  \x23  ", @"\x7f\x7f", @"!-_.*()/&$@=;:+ ,?\{^}%`]>[~<#|'\"", @"c?p1=%+&sd &p2=中  文"];
     
     for (NSString *key in specialKeys) {
         NSString *filePath = [[TOSUtil documentDirectory] stringByAppendingPathComponent:_fileNames[0]];
@@ -1126,6 +1127,7 @@
         TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
         
         TOSTask *task = [_client putObject:putInput];
+        NSLog(@"==> key: %@", key);
         [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
             XCTAssertNil(t.error);
             XCTAssertNotNil(t.result);
