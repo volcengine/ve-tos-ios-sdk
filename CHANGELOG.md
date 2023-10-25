@@ -23,3 +23,4 @@
 ### 变更内容
 
 * 支持数据处理转存参数 tosProcessSaveAsObject & tosProcessSaveAsBucket
+* 上传、下载进度条

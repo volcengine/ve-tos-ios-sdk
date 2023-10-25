@@ -1219,7 +1219,7 @@
     cp.tosTaskNum = self.tosTaskNum;
     cp.tosEnableCheckpoint = self.tosEnableCheckpoint;
     cp.tosCheckpointFile = self.tosCheckpointFile;
-//    cp.tosUploadProgress = self.tosUploadProgress;s
+//    cp.tosUploadProgress = self.tosUploadProgress;
     cp.tosUploadEventListener = self.tosUploadEventListener;
     return cp;
 }

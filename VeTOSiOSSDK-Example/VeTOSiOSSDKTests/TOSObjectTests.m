@@ -1094,6 +1094,10 @@
     putInput.tosContent = [readFile readDataToEndOfFile];
     putInput.tosMeta = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"customer-value", @"customer-name", nil];
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    putInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+        NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+        [progressTest updateTotalBytes:totalBytesSent totalBytesExpected:totalBytesExpectedToSend];
+    };
     
     TOSTask *task = [_client putObject:putInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
@@ -1109,8 +1113,8 @@
 }
 
 - (void)testAPI_putObjectFromDataWithSpecialKey {
-//    NSArray *specialKeys = @[@"   ", @"a   b", @"a....b", @"a////b", @"\x20\x20", @"  \x22  \x23  ", @"\x7f\x7f", @"!-_.*()/&$@=;:+ ,?\{^}%`]>[~<#|'\"", @"http://unmi.cc?p1=%+&sd &p2=中文", @"dirA/dirB/dirC/dirD"];
-    NSArray *specialKeys = @[@"   ", @"a   b", @"a....b", @"\x20\x20", @"  \x22  \x23  ", @"\x7f\x7f", @"!-_.*()/&$@=;:+ ,?\{^}%`]>[~<#|'\"", @"c?p1=%+&sd &p2=中  文"];
+    NSArray *specialKeys = @[@"   ", @"a   b", @"a....b", @"a////b", @"\x20\x20", @"  \x22  \x23  ", @"\x7f\x7f", @"!-_.*()/&$@=;:+ ,?\{^}%`]>[~<#|'\"", @"http://unmi.cc?p1=%+&sd &p2=中文", @"dirA/dirB/dirC/dirD"];
+//    NSArray *specialKeys = @[@"   ", @"a   b", @"a....b", @"\x20\x20", @"  \x22  \x23  ", @"\x7f\x7f", @"!-_.*()/&$@=;:+ ,?\{^}%`]>[~<#|'\"", @"c?p1=%+&sd &p2=中  文"];
     
     for (NSString *key in specialKeys) {
         NSString *filePath = [[TOSUtil documentDirectory] stringByAppendingPathComponent:_fileNames[0]];
@@ -1125,6 +1129,10 @@
         putInput.tosContent = [readFile readDataToEndOfFile];
         
         TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+        putInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+            NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+            [progressTest updateTotalBytes:totalBytesSent totalBytesExpected:totalBytesExpectedToSend];
+        };
         
         TOSTask *task = [_client putObject:putInput];
         NSLog(@"==> key: %@", key);
@@ -1153,6 +1161,10 @@
         putInput.tosMeta = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"customer-value", @"customer-name", nil];
         
         TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+        putInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+            NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+            [progressTest updateTotalBytes:totalBytesSent totalBytesExpected:totalBytesExpectedToSend];
+        };
         
         TOSTask *task = [_client putObjectFromFile:putInput];
 
@@ -1210,6 +1222,10 @@
     putInput.tosContent = [readFile readDataToEndOfFile];
     putInput.tosContentType = @"application/special";
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    putInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+        NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+        [progressTest updateTotalBytes:totalBytesSent totalBytesExpected:totalBytesExpectedToSend];
+    };
     
     TOSTask *task = [_client putObject:putInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
@@ -1256,6 +1272,10 @@
     putInput.tosMeta = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"customer-value", @"customer-name", nil];
     
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    putInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+        NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+        [progressTest updateTotalBytes:totalBytesSent totalBytesExpected:totalBytesExpectedToSend];
+    };
     
     TOSTask *task = [_client putObject:putInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
@@ -1358,6 +1378,10 @@
     appendInput.tosContent = [NSData dataWithContentsOfFile:newFilePath];
     appendInput.tosContentLength = size;
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    appendInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+        NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+        [progressTest updateTotalBytes:totalBytesSent totalBytesExpected:totalBytesExpectedToSend];
+    };
     
     __block int64_t nextAppendOffset = 0;
     __block uint64_t hashCrc64ecma = 0;
@@ -1382,6 +1406,10 @@
     appendInput.tosContent = [NSData dataWithContentsOfFile:newFilePath];
     appendInput.tosContentLength = size;
     progressTest = [TOSProgressTestUtil new];
+    appendInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+        NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+        [progressTest updateTotalBytes:totalBytesSent totalBytesExpected:totalBytesExpectedToSend];
+    };
 
     task = [_client appendObject:appendInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
@@ -1409,6 +1437,10 @@
     getInput.tosBucket = _privateBucket;
     getInput.tosKey = _fileNames[0];
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    getInput.tosDownloadProgress = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        NSLog(@"%lld, %lld, %lld", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+        [progressTest updateTotalBytes:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+    };
     
     task = [_client getObject:getInput];
     [task waitUntilFinished];
@@ -1466,6 +1498,10 @@
     getInput.tosKey = _fileNames[3];
     
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    getInput.tosDownloadProgress = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        NSLog(@"%lld, %lld, %lld", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+        [progressTest updateTotalBytes:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+    };
     
     getInput.tosOnReceiveData = ^(NSData *data) {
         NSLog(@"tosOnReceiveData: %lu", [data length]);
@@ -1502,6 +1538,10 @@
     getInput.tosRangeStart = 0;
     getInput.tosRangeEnd = 999;
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    getInput.tosDownloadProgress = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        NSLog(@"%lld, %lld, %lld", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+        [progressTest updateTotalBytes:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+    };
 
     task = [_client getObject:getInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
@@ -1577,6 +1617,10 @@
     getInput.tosKey = _fileNames[3];
     getInput.tosFilePath = tmpFilePath;
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    getInput.tosDownloadProgress = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        NSLog(@"%lld, %lld, %lld", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+        [progressTest updateTotalBytes:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+    };
     
     task = [_client getObjectToFile:getInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
@@ -1625,6 +1669,10 @@
     getInput.tosKey = _fileNames[3];
     getInput.tosFilePath = tmpFilePath;
     TOSProgressTestUtil *progressTest = [TOSProgressTestUtil new];
+    getInput.tosDownloadProgress = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        NSLog(@"%lld, %lld, %lld", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+        [progressTest updateTotalBytes:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+    };
     
     task = [_client getObjectToFile:getInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
@@ -1648,6 +1696,10 @@
     getInput.tosKey = _fileNames[2];
     getInput.tosFilePath = tmpFilePath;
     progressTest = [TOSProgressTestUtil new];
+    getInput.tosDownloadProgress = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        NSLog(@"%lld, %lld, %lld", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+        [progressTest updateTotalBytes:totalBytesWritten totalBytesExpected:totalBytesExpectedToWrite];
+    };
     task = [_client getObjectToFile:getInput];
     [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
         XCTAssertNil(t.error);
@@ -1775,6 +1827,9 @@
     putInput.tosBucket = bucket;
     putInput.tosKey = object;
     putInput.tosMeta = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"meta-value", @"x-tos-meta-key", nil];
+    putInput.tosUploadProgress = ^(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+        NSLog(@"%lld, %lld, %lld", bytesSent, totalBytesSent, totalBytesExpectedToSend);
+    };
     
     NSMutableString *str = [NSMutableString string];
     [str appendString:@"Hello world."];
