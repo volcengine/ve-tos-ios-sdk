@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -198,6 +198,17 @@
                 } else {
                     [queryDict setObject:[@[value] mutableCopy] forKey:key];
                 }
+            }
+        }
+        else if (count > 2) {
+            key = components[0];
+            value = [obj substringFromIndex: key.length+1];
+            if (queryDictionary[key]) {
+                // If the query parameter has multiple values, add it in the mutable array
+                [[queryDictionary objectForKey:key] addObject:value];
+            } else {
+                // Insert the value for query parameter as an element in mutable array
+                [queryDictionary setObject:[@[value] mutableCopy] forKey:key];
             }
         }
     }];

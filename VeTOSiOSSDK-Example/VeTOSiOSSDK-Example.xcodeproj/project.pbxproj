@@ -10,6 +10,11 @@
 		2B18A48B28BFCAC8009DC909 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B18A48A28BFCAC8009DC909 /* image.png */; };
 		2B27064629271BF400275903 /* TOSUploadFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B27064529271BF400275903 /* TOSUploadFileTests.m */; };
 		2B52524828ABC9FC00FC1B99 /* TOSObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B52524728ABC9FC00FC1B99 /* TOSObjectTests.m */; };
+		2B67AE012AE7E8B2001D1AAB /* VeTOSiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B67AE002AE7E8B2001D1AAB /* VeTOSiOSSDK.framework */; };
+		2B67AE022AE7E8B2001D1AAB /* VeTOSiOSSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B67AE002AE7E8B2001D1AAB /* VeTOSiOSSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B67AE042AE804DA001D1AAB /* example.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B67AE032AE804DA001D1AAB /* example.jpg */; };
+		2B67AE062AE823CE001D1AAB /* TOSUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B67AE052AE823CE001D1AAB /* TOSUtilityTests.m */; };
+		2B67AE0C2AE8B8A0001D1AAB /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2B67AE0B2AE8B8A0001D1AAB /* test.mp4 */; };
 		2B99F9A328ADF89100899C42 /* TOSMultipartTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99F9A228ADF89100899C42 /* TOSMultipartTests.m */; };
 		2B99F9A728AE584B00899C42 /* PreSignTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99F9A628AE584B00899C42 /* PreSignTests.m */; };
 		2BA05A65287D1EB400C470CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA05A64287D1EB400C470CA /* AppDelegate.m */; };
@@ -56,6 +61,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2B67AE022AE7E8B2001D1AAB /* VeTOSiOSSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +73,10 @@
 		2B27064529271BF400275903 /* TOSUploadFileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSUploadFileTests.m; sourceTree = "<group>"; };
 		2B52524628ABC83600FC1B99 /* TOSTestConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSTestConstants.h; sourceTree = "<group>"; };
 		2B52524728ABC9FC00FC1B99 /* TOSObjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSObjectTests.m; sourceTree = "<group>"; };
+		2B67AE002AE7E8B2001D1AAB /* VeTOSiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VeTOSiOSSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B67AE032AE804DA001D1AAB /* example.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example.jpg; sourceTree = "<group>"; };
+		2B67AE052AE823CE001D1AAB /* TOSUtilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSUtilityTests.m; sourceTree = "<group>"; };
+		2B67AE0B2AE8B8A0001D1AAB /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		2B99F9A228ADF89100899C42 /* TOSMultipartTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOSMultipartTests.m; sourceTree = "<group>"; };
 		2B99F9A628AE584B00899C42 /* PreSignTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreSignTests.m; sourceTree = "<group>"; };
 		2BA05A60287D1EB400C470CA /* VeTOSiOSSDK-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VeTOSiOSSDK-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B67AE012AE7E8B2001D1AAB /* VeTOSiOSSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +137,8 @@
 		2B18A47F28BF383D009DC909 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2B67AE0B2AE8B8A0001D1AAB /* test.mp4 */,
+				2B67AE032AE804DA001D1AAB /* example.jpg */,
 				2B18A48A28BFCAC8009DC909 /* image.png */,
 				2BAF754A2A47496000E297C4 /* file.zero */,
 			);
@@ -175,6 +188,7 @@
 		2BA05B0B287D242C00C470CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B67AE002AE7E8B2001D1AAB /* VeTOSiOSSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,6 +205,7 @@
 				2B99F9A228ADF89100899C42 /* TOSMultipartTests.m */,
 				2B99F9A628AE584B00899C42 /* PreSignTests.m */,
 				2B27064529271BF400275903 /* TOSUploadFileTests.m */,
+				2B67AE052AE823CE001D1AAB /* TOSUtilityTests.m */,
 			);
 			path = VeTOSiOSSDKTests;
 			sourceTree = "<group>";
@@ -322,8 +337,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B67AE042AE804DA001D1AAB /* example.jpg in Resources */,
 				2BA05A73287D1EB500C470CA /* LaunchScreen.storyboard in Resources */,
 				2BA05A70287D1EB500C470CA /* Assets.xcassets in Resources */,
+				2B67AE0C2AE8B8A0001D1AAB /* test.mp4 in Resources */,
 				2BA05A6E287D1EB400C470CA /* Main.storyboard in Resources */,
 				2B18A48B28BFCAC8009DC909 /* image.png in Resources */,
 				2BAF754B2A47496000E297C4 /* file.zero in Resources */,
@@ -384,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BAF44D028AB96D0009CF7BF /* TOSBucketTests.m in Sources */,
+				2B67AE062AE823CE001D1AAB /* TOSUtilityTests.m in Sources */,
 				2B99F9A328ADF89100899C42 /* TOSMultipartTests.m in Sources */,
 				2B99F9A728AE584B00899C42 /* PreSignTests.m in Sources */,
 				2BAF44D528AB99FB009CF7BF /* TOSTestUtil.m in Sources */,

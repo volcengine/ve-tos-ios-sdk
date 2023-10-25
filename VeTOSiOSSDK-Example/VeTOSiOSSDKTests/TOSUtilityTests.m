@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-#import <XCTest/XCTest.h>
 
-@interface VeTOSiOSSDKTests : XCTestCase
+#import <XCTest/XCTest.h>
+#import <VeTOSiOSSDK/VeTOSiOSSDK.h>
+
+@interface TOSUtilityTests : XCTestCase
 
 @end
 
-@implementation VeTOSiOSSDKTests
+@implementation TOSUtilityTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -40,6 +42,23 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+- (void)testUrlSafeBase64String {
+    NSString * raw = @"Twas brillig, and the slithy toves";
+    NSString * encoded = [TOSUtil urlSafeBase64String:raw];
+    XCTAssertTrue([@"VHdhcyBicmlsbGlnLCBhbmQgdGhlIHNsaXRoeSB0b3Zlcw==" isEqualToString:encoded]);
+    
+    NSArray<NSString *> * rawStr = @[@"中文", @"中 / / 文",
+                        @"", @"f", @"fo", @"foo", @"foob", @"fooba", @"foobar",
+                        @"sure.", @"sure", @"sur", @"su", @"leasure.", @"easure.", @"asure.", @"sure."];
+    NSArray<NSString *> * encodedStr = @[@"5Lit5paH", @"5LitIC8gLyDmloc=",
+                        @"", @"Zg==", @"Zm8=", @"Zm9v", @"Zm9vYg==", @"Zm9vYmE=", @"Zm9vYmFy",
+                        @"c3VyZS4=", @"c3VyZQ==", @"c3Vy", @"c3U=", @"bGVhc3VyZS4=", @"ZWFzdXJlLg==", @"YXN1cmUu", @"c3VyZS4="];
+    for (int i = 0; i < [rawStr count]; i++) {
+        NSString * str = [rawStr objectAtIndex:i];
+        XCTAssertTrue([[encodedStr objectAtIndex:i] isEqualToString:[TOSUtil urlSafeBase64String:str]]);
+    }
 }
 
 @end

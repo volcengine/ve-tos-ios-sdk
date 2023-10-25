@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -271,6 +271,14 @@ int32_t const TOS_CHUNK_SIZE = 8 * 1024;
 
 + (uint64_t)crc64ForCombineCRC1:(uint64_t)crc1 CRC2:(uint64_t)crc2 length:(uintmax_t)len2 {
     return aos_crc64_combine(crc1, crc2, len2);
+}
+
++ (NSString *)urlSafeBase64String:(NSString *)str {
+    NSData *originalData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64String = [originalData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    base64String = [base64String stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+    base64String = [base64String stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
+    return base64String;
 }
 
 @end

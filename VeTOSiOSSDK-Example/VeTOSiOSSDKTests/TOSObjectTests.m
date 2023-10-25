@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1867,6 +1867,266 @@
         XCTAssertTrue(isValid);
         XCTAssertNil(err);
     }
+}
+
+- (void)testAPI_basicVideoProcess {
+    NSString *key = @"example.mp4";
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
+    TOSPutObjectFromFileInput *putInput = [TOSPutObjectFromFileInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = key;
+    putInput.tosFilePath = filePath;
+    
+    TOSTask *task = [_client putObjectFromFile:putInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutObjectFromFileOutput class]]);
+        TOSPutObjectFromFileOutput *putOutput = t.result;
+        XCTAssertEqual(200, putOutput.tosStatusCode);
+        BOOL isMD5Equal = [self checkMd5WithBucketName:self->_privateBucket objectKey:key localFilePath:filePath];
+        XCTAssertTrue(isMD5Equal);
+        return nil;
+    }] waitUntilFinished];
+    
+    NSString * tempFilePath = [[TOSUtil documentDirectory] stringByAppendingPathComponent:@"out.jpg"];
+    
+    TOSGetObjectToFileInput *getToFileInput = [TOSGetObjectToFileInput new];
+    getToFileInput.tosBucket = _privateBucket;
+    getToFileInput.tosKey = key;
+    getToFileInput.tosFilePath = tempFilePath;
+    getToFileInput.tosProcess = @"video/snapshot,t_1000";
+    [[[_client getObjectToFile:getToFileInput] continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSGetObjectToFileOutput class]]);
+        TOSGetObjectToFileOutput *getToFileOutput = t.result;
+        XCTAssertTrue([@"video" isEqualToString:[getToFileOutput.tosHeader objectForKey:@"x-tos-data-process"]]);
+        return nil;
+    }] waitUntilFinished];
+}
+
+- (void)testAPI_getVideoInfo {
+    NSString *key = @"example.mp4";
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
+    TOSPutObjectFromFileInput *putInput = [TOSPutObjectFromFileInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = key;
+    putInput.tosFilePath = filePath;
+    
+    TOSTask *task = [_client putObjectFromFile:putInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutObjectFromFileOutput class]]);
+        TOSPutObjectFromFileOutput *putOutput = t.result;
+        XCTAssertEqual(200, putOutput.tosStatusCode);
+        BOOL isMD5Equal = [self checkMd5WithBucketName:self->_privateBucket objectKey:key localFilePath:filePath];
+        XCTAssertTrue(isMD5Equal);
+        return nil;
+    }] waitUntilFinished];
+    
+    TOSGetObjectInput *getInput = [TOSGetObjectInput new];
+    getInput.tosBucket = _privateBucket;
+    getInput.tosKey = key;
+    getInput.tosProcess = @"video/info";
+    task = [_client getObject:getInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSGetObjectOutput class]]);
+        TOSGetObjectOutput *getOutput = t.result;
+        XCTAssertTrue([@"video" isEqualToString:[getOutput.tosHeader objectForKey:@"x-tos-data-process"]]);
+        XCTAssertEqual(200, getOutput.tosStatusCode);
+        return nil;
+    }] waitUntilFinished];
+}
+
+- (void)testAPI_videoProcessSaveAs {
+    NSString *key = @"example.mp4";
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
+    TOSPutObjectFromFileInput *putInput = [TOSPutObjectFromFileInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = key;
+    putInput.tosFilePath = filePath;
+    
+    TOSTask *task = [_client putObjectFromFile:putInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutObjectFromFileOutput class]]);
+        TOSPutObjectFromFileOutput *putOutput = t.result;
+        XCTAssertEqual(200, putOutput.tosStatusCode);
+        BOOL isMD5Equal = [self checkMd5WithBucketName:self->_privateBucket objectKey:key localFilePath:filePath];
+        XCTAssertTrue(isMD5Equal);
+        return nil;
+    }] waitUntilFinished];
+    
+    // saveas -- object: output.jpg  bucket: ios-sdk-test-saveas
+    TOSGetObjectInput *getInput = [TOSGetObjectInput new];
+    getInput.tosBucket = _privateBucket;
+    getInput.tosKey = key;
+    getInput.tosProcess = @"video/snapshot,t_1000";
+    getInput.tosProcessSaveAsObject = @"output.jpg";
+    getInput.tosProcessSaveAsBucket = @"ios-sdk-test-saveas";
+    task = [_client getObject:getInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSGetObjectOutput class]]);
+        TOSGetObjectOutput *getOutput = t.result;
+        XCTAssertTrue([@"video" isEqualToString:[getOutput.tosHeader objectForKey:@"x-tos-data-process"]]);
+        XCTAssertEqual(200, getOutput.tosStatusCode);
+        NSString *contentStr = [[NSString alloc] initWithData:getOutput.tosContent encoding:NSUTF8StringEncoding];
+        XCTAssertTrue([contentStr containsString:@"\"status\":\"OK\""]);
+        return nil;
+    }] waitUntilFinished];
+    
+    TOSHeadObjectInput *headInput = [TOSHeadObjectInput new];
+    headInput.tosBucket = @"ios-sdk-test-saveas";
+    headInput.tosKey = @"output.jpg";
+    task = [_client headObject:headInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSHeadObjectOutput class]]);
+        TOSHeadObjectOutput *headOutput = t.result;
+        XCTAssertEqual(200, headOutput.tosStatusCode);
+        XCTAssertTrue([TOSStorageClassStandard isEqualToString:headOutput.tosStorageClass]);
+        return nil;
+    }] waitUntilFinished];
+}
+
+- (void)testAPI_basicImageProcess {
+    NSString *key = @"example.jpg";
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"jpg"];
+    TOSPutObjectFromFileInput *putInput = [TOSPutObjectFromFileInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = key;
+    putInput.tosFilePath = filePath;
+    
+    TOSTask *task = [_client putObjectFromFile:putInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutObjectFromFileOutput class]]);
+        TOSPutObjectFromFileOutput *putOutput = t.result;
+        XCTAssertEqual(200, putOutput.tosStatusCode);
+        BOOL isMD5Equal = [self checkMd5WithBucketName:self->_privateBucket objectKey:key localFilePath:filePath];
+        XCTAssertTrue(isMD5Equal);
+        return nil;
+    }] waitUntilFinished];
+    
+    NSString * tempFilePath = [[TOSUtil documentDirectory] stringByAppendingPathComponent:@"out.jpg"];
+    
+    TOSGetObjectToFileInput *getToFileInput = [TOSGetObjectToFileInput new];
+    getToFileInput.tosBucket = _privateBucket;
+    getToFileInput.tosKey = key;
+    getToFileInput.tosFilePath = tempFilePath;
+    getToFileInput.tosProcess = @"image/resize,h_100";
+    [[[_client getObjectToFile:getToFileInput] continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSGetObjectToFileOutput class]]);
+        TOSGetObjectToFileOutput *getToFileOutput = t.result;
+        XCTAssertTrue([@"image" isEqualToString:[getToFileOutput.tosHeader objectForKey:@"x-tos-data-process"]]);
+        return nil;
+    }] waitUntilFinished];
+}
+
+- (void)testAPI_getImageInfo {
+    NSString *key = @"example.jpg";
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"jpg"];
+    TOSPutObjectFromFileInput *putInput = [TOSPutObjectFromFileInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = key;
+    putInput.tosFilePath = filePath;
+    
+    TOSTask *task = [_client putObjectFromFile:putInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutObjectFromFileOutput class]]);
+        TOSPutObjectFromFileOutput *putOutput = t.result;
+        XCTAssertEqual(200, putOutput.tosStatusCode);
+        
+        BOOL isMD5Equal = [self checkMd5WithBucketName:self->_privateBucket objectKey:key localFilePath:filePath];
+        XCTAssertTrue(isMD5Equal);
+        return nil;
+    }] waitUntilFinished];
+    
+    // GetObject
+    TOSGetObjectInput *getInput = [TOSGetObjectInput new];
+    getInput.tosBucket = _privateBucket;
+    getInput.tosKey = key;
+    getInput.tosProcess = @"image/info";
+    task = [_client getObject:getInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSGetObjectOutput class]]);
+        TOSGetObjectOutput *getOutput = t.result;
+        
+        XCTAssertTrue([@"image" isEqualToString:[getOutput.tosHeader objectForKey:@"x-tos-data-process"]]);
+        XCTAssertEqual(200, getOutput.tosStatusCode);
+        return nil;
+    }] waitUntilFinished];
+}
+
+- (void)testAPI_imageProcessSaveAs {
+    NSString *key = @"example.jpg";
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"jpg"];
+    TOSPutObjectFromFileInput *putInput = [TOSPutObjectFromFileInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = key;
+    putInput.tosFilePath = filePath;
+    
+    TOSTask *task = [_client putObjectFromFile:putInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutObjectFromFileOutput class]]);
+        TOSPutObjectFromFileOutput *putOutput = t.result;
+        XCTAssertEqual(200, putOutput.tosStatusCode);
+        BOOL isMD5Equal = [self checkMd5WithBucketName:self->_privateBucket objectKey:key localFilePath:filePath];
+        XCTAssertTrue(isMD5Equal);
+        return nil;
+    }] waitUntilFinished];
+    
+    // saveas -- object: output.jpg  bucket: ios-sdk-test-saveas
+    TOSGetObjectInput *getInput = [TOSGetObjectInput new];
+    getInput.tosBucket = _privateBucket;
+    getInput.tosKey = key;
+    getInput.tosProcess = @"image/resize,w_200";
+    getInput.tosProcessSaveAsObject = @"output.jpg";
+    getInput.tosProcessSaveAsBucket = @"ios-sdk-test-saveas";
+    task = [_client getObject:getInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSGetObjectOutput class]]);
+        TOSGetObjectOutput *getOutput = t.result;
+        XCTAssertTrue([@"image" isEqualToString:[getOutput.tosHeader objectForKey:@"x-tos-data-process"]]);
+        XCTAssertEqual(200, getOutput.tosStatusCode);
+        NSString *contentStr = [[NSString alloc] initWithData:getOutput.tosContent encoding:NSUTF8StringEncoding];
+        XCTAssertTrue([contentStr containsString:@"\"status\":\"OK\""]);
+        return nil;
+    }] waitUntilFinished];
+    
+    TOSHeadObjectInput *headInput = [TOSHeadObjectInput new];
+    headInput.tosBucket = @"ios-sdk-test-saveas";
+    headInput.tosKey = @"output.jpg";
+    task = [_client headObject:headInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSHeadObjectOutput class]]);
+        TOSHeadObjectOutput *headOutput = t.result;
+        XCTAssertEqual(200, headOutput.tosStatusCode);
+        XCTAssertTrue([TOSStorageClassStandard isEqualToString:headOutput.tosStorageClass]);
+        return nil;
+    }] waitUntilFinished];
 }
 
 
