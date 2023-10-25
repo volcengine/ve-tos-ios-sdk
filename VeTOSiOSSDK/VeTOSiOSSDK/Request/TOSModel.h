@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -229,6 +229,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosRange; // 格式为bytes=x-y，与RangeStart和RangeEnd互斥，如果设置了该参数，优先使用该参数
 
 @property (nonatomic, copy) NSString *tosProcess;
+@property (nonatomic, copy) NSString *tosProcessSaveAsObject;
+@property (nonatomic, copy) NSString *tosProcessSaveAsBucket;
 
 //@property (nonatomic, copy) TOSNetworkingDownloadProgressBlock tosDownloadProgress; // 下载进度条
 @property (nonatomic, copy) TOSNetworkingOnRecieveDataBlock tosOnReceiveData;

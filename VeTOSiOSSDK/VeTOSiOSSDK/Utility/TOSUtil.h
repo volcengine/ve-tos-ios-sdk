@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (uint64_t)crc64ecma:(uint64_t)crc1 buffer:(void *)buffer length:(size_t)len;
 + (uint64_t)crc64ForCombineCRC1:(uint64_t)crc1 CRC2:(uint64_t)crc2 length:(uintmax_t)len2;
+
++ (NSString *)urlSafeBase64String:(NSString *)str;
 
 @end
 

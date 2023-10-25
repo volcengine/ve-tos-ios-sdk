@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,6 +88,8 @@ extern TOSDownloadEventType const TOSDownloadEventRenameTempFileSucceed;
 extern TOSDownloadEventType const TOSDownloadEventRenameTempFileFailed;
 
 extern NSString * const TOSHTTPQueryProcess;
+extern NSString * const TOSProcessSaveAsObject;
+extern NSString * const TOSProcessSaveAsBucket;
 
 //typedef void (^TOSNetworkingUploadProgressBlock) (int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend);
 //typedef void (^TOSNetworkingDownloadProgressBlock) (int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);

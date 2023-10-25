@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,6 +70,7 @@
         XCTAssertTrue([t.result isKindOfClass:[TOSHeadBucketOutput class]]);
         TOSHeadBucketOutput *headOutput = t.result;
         XCTAssertEqual(200, headOutput.tosStatusCode);
+        NSLog(@"=====>  %@", headOutput.tosRegion);
         XCTAssertTrue([TOS_REGION isEqualToString:headOutput.tosRegion]);
         XCTAssertTrue([TOSStorageClassStandard isEqualToString:headOutput.tosStorageClass]);
         return nil;
@@ -111,6 +112,7 @@
         XCTAssertTrue([t.result isKindOfClass:[TOSHeadBucketOutput class]]);
         TOSHeadBucketOutput *headOutput = t.result;
         XCTAssertEqual(200, headOutput.tosStatusCode);
+        NSLog(@"=====>  %@", headOutput.tosRegion);
         XCTAssertTrue([TOS_REGION isEqualToString:headOutput.tosRegion]);
         XCTAssertTrue([TOSStorageClassIa isEqualToString:headOutput.tosStorageClass]);
         return nil;
@@ -419,6 +421,7 @@
         TOSHeadBucketOutput *headOutput = t.result;
         XCTAssertEqual(200, headOutput.tosStatusCode);
         XCTAssertTrue([headOutput.tosStorageClass isEqualToString:TOSStorageClassStandard]);
+        NSLog(@"=====>  %@", headOutput.tosRegion);
         XCTAssertTrue([headOutput.tosRegion isEqualToString:TOS_REGION]);
         return nil;
     }] waitUntilFinished];

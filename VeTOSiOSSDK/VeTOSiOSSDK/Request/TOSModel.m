@@ -1,5 +1,5 @@
 /**
- * Copyright (2022) Beijing Volcano Engine Technology Co., Ltd.
+ * Copyright 2023 Beijing Volcano Engine Technology Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -311,6 +311,12 @@
     }
     if (_tosProcess) {
         [queryParams setValue:_tosProcess forKey:TOSHTTPQueryProcess];
+    }
+    if (_tosProcessSaveAsObject) {
+        [queryParams setValue:[TOSUtil urlSafeBase64String:_tosProcessSaveAsObject] forKey:TOSProcessSaveAsObject];
+    }
+    if (_tosProcessSaveAsBucket) {
+        [queryParams setValue:[TOSUtil urlSafeBase64String:_tosProcessSaveAsBucket] forKey:TOSProcessSaveAsBucket];
     }
     return queryParams;
 }
