@@ -313,6 +313,10 @@ static NSMutableArray *_globalUserAgentPrefixes = nil;
     if (!delegate) {
         return;
     }
+    
+    if (delegate.uploadProgress) {
+        delegate.uploadProgress(bytesSent, totalBytesSent, totalBytesExpectedToSend);
+    }
 }
 
 #pragma mark - NSURLSessionDataDelegate
@@ -357,6 +361,13 @@ static NSMutableArray *_globalUserAgentPrefixes = nil;
                 [dataTask cancel];
             }
         }
+    }
+    // 下载进度条
+    if (delegate.downloadProgress) {
+        int64_t bytesWritten = [data length];
+        delegate.payloadTotalBytesWritten += bytesWritten;
+        int64_t totalBytesExpectedToWrite = dataTask.response.expectedContentLength;
+        delegate.downloadProgress(bytesWritten, delegate.payloadTotalBytesWritten, totalBytesExpectedToWrite);
     }
 }
 

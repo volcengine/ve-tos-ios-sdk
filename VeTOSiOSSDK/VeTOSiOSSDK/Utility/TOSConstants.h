@@ -91,8 +91,8 @@ extern NSString * const TOSHTTPQueryProcess;
 extern NSString * const TOSProcessSaveAsObject;
 extern NSString * const TOSProcessSaveAsBucket;
 
-//typedef void (^TOSNetworkingUploadProgressBlock) (int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend);
-//typedef void (^TOSNetworkingDownloadProgressBlock) (int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
+typedef void (^TOSNetworkingUploadProgressBlock) (int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend);
+typedef void (^TOSNetworkingDownloadProgressBlock) (int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
 typedef void (^TOSNetworkingCompletionHandlerBlock) (id _Nullable responseObject, NSError * _Nullable error);
 typedef void (^TOSNetworkingOnRecieveDataBlock) (NSData * data);
 

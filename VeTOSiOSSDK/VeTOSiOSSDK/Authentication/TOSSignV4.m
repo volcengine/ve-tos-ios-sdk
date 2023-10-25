@@ -58,42 +58,10 @@
     [canonicalReq appendString:[self getCanonicalQueryString:query]];
     [canonicalReq appendString:@"\n"];
     
-    [canonicalReq appendString:[self getCanonicalHeaders:headers]];
+    [canonicalReq appendString:[self getCanonicalHeaderString:headers]];
     [canonicalReq appendString:@"\n"];
     
-    [canonicalReq appendString:[self getSignedHeaders:headers]];
-    [canonicalReq appendString:@"\n"];
-    
-    [canonicalReq appendString:[NSString stringWithFormat:@"%@", hashedPayload]];
-    
-    return canonicalReq;
-}
-
-+ (NSString *)getCanonicalRequestForPresign:(NSString *)HTTPMethod path:(NSString *)path query:(NSString *)query headers:(NSDictionary *)headers contentSha256:(NSString *)hashedPayload {
-    /*
-     CanonicalReq =
-         HTTPMethod + '\n' +
-         CanonicalURI + '\n' +
-         CanonicalQueryString + '\n' +
-         CanonicalHeaders + '\n' +
-         SignedHeaders + '\n' +
-         HashedPayload
-     */
-    NSMutableString *canonicalReq = [NSMutableString new];
-    
-    [canonicalReq appendString:HTTPMethod];
-    [canonicalReq appendString:@"\n"];
-    
-    [canonicalReq appendString:path]; // UriEncode(rawPath)
-    [canonicalReq appendString:@"\n"];
-    
-    [canonicalReq appendString:[self getCanonicalQueryStringForPresign:query]];
-    [canonicalReq appendString:@"\n"];
-    
-    [canonicalReq appendString:[self getCanonicalHeaders:headers]];
-    [canonicalReq appendString:@"\n"];
-    
-    [canonicalReq appendString:[self getSignedHeaders:headers]];
+    [canonicalReq appendString:[self getSignedHeaderString:headers]];
     [canonicalReq appendString:@"\n"];
     
     [canonicalReq appendString:[NSString stringWithFormat:@"%@", hashedPayload]];
@@ -101,16 +69,16 @@
     return canonicalReq;
 }
 
-+ (NSString *)getCanonicalHeaders:(NSDictionary *)rawHeaders {
-    NSCharacterSet *whitespaceCharSet = [NSCharacterSet whitespaceCharacterSet];
++ (NSString *)getCanonicalHeaderString:(NSDictionary *)headers {
+    NSCharacterSet *whitespaceChars = [NSCharacterSet whitespaceCharacterSet];
     // headers字典序排序
-    NSMutableArray *sortedHeaders = [[NSMutableArray alloc] initWithArray:[rawHeaders allKeys]];
+    NSMutableArray *sortedHeaders = [[NSMutableArray alloc] initWithArray:[headers allKeys]];
     [sortedHeaders sortUsingSelector:@selector(caseInsensitiveCompare:)];
     
     NSMutableString *headerString = [NSMutableString new];
     for (NSString *header in sortedHeaders) {
-        NSString *value = [rawHeaders valueForKey:header];
-        value = [value stringByTrimmingCharactersInSet:whitespaceCharSet];
+        NSString *value = [headers valueForKey:header];
+        value = [value stringByTrimmingCharactersInSet:whitespaceChars];
         [headerString appendString:[header lowercaseString]];
         [headerString appendString:@":"];
         [headerString appendString:value];
@@ -119,65 +87,25 @@
     
     NSPredicate *noEmptyStrings = [NSPredicate predicateWithFormat:@"SELF != ''"];
     
-    NSArray *parts = [headerString componentsSeparatedByCharactersInSet:whitespaceCharSet];
+    NSArray *parts = [headerString componentsSeparatedByCharactersInSet:whitespaceChars];
     NSArray *nonWhitespace = [parts filteredArrayUsingPredicate:noEmptyStrings];
     return [nonWhitespace componentsJoinedByString:@" "];
 }
 
-+ (NSString *)getSignedHeaders:(NSDictionary *)rawHeaders {
-    NSMutableArray *sortedHeaders = [[NSMutableArray alloc] initWithArray:[rawHeaders allKeys]];
++ (NSString *)getSignedHeaderString:(NSDictionary *)headers {
+    NSMutableArray *sortedHeaders = [[NSMutableArray alloc] initWithArray:[headers allKeys]];
+    
     [sortedHeaders sortUsingSelector:@selector(caseInsensitiveCompare:)];
-    NSMutableString *signedHeaders = [NSMutableString new];
+    
+    NSMutableString *signedHeaderString = [NSMutableString new];
     for (NSString *header in sortedHeaders) {
-        if ([signedHeaders length] > 0) {
-            [signedHeaders appendString:@";"];
+        if ([signedHeaderString length] > 0) {
+            [signedHeaderString appendString:@";"];
         }
-        [signedHeaders appendString:[header lowercaseString]];
-    }
-    return signedHeaders;
-}
-
-+ (NSString *)getCanonicalQueryStringForPresign:(NSString *)query {
-    NSMutableDictionary<NSString *, NSMutableArray<NSString *> *> *queryDict = [NSMutableDictionary new];
-    [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSArray *comps = [obj componentsSeparatedByString:@"="];
-        NSString *key;
-        NSString *value = @"";
-        NSUInteger count = [comps count];
-        if (count > 0 && count <= 2) {
-            key = comps[0];
-            if  (! [key isEqualToString:@""] ) {
-                if (count == 2) {
-                    value = comps[1];
-                }
-                if (queryDict[key]) {
-                    [[queryDict objectForKey:key] addObject:value];
-                } else {
-                    [queryDict setObject:[@[value] mutableCopy] forKey:key];
-                }
-            }
-        }
-    }];
-    
-    NSMutableArray *sortedQuery = [[NSMutableArray alloc] initWithArray:[queryDict allKeys]];
-    
-    [sortedQuery sortUsingSelector:@selector(compare:)];
-    
-    NSMutableString *canonicalQueryString = [NSMutableString new];
-    for (NSString *key in sortedQuery) {
-        [queryDict[key] sortUsingSelector:@selector(compare:)];
-        for (NSString *parameterValue in queryDict[key]) {
-            [canonicalQueryString appendString:[TOSUtil URLEncode:key]];
-            [canonicalQueryString appendString:@"="];
-            [canonicalQueryString appendString:[TOSUtil URLEncodingPath:parameterValue]];
-            [canonicalQueryString appendString:@"&"];
-        }
-    }
-    if ([canonicalQueryString hasSuffix:@"&"]) {
-        return [canonicalQueryString substringToIndex:[canonicalQueryString length] - 1];
+        [signedHeaderString appendString:[header lowercaseString]];
     }
     
-    return canonicalQueryString;
+    return signedHeaderString;
 }
 
 + (NSString *)getCanonicalQueryString:(NSString *)query {
@@ -200,15 +128,14 @@
                 }
             }
         }
+        // 数据处理 url-safe base64 编码
         else if (count > 2) {
-            key = components[0];
+            key = comps[0];
             value = [obj substringFromIndex: key.length+1];
-            if (queryDictionary[key]) {
-                // If the query parameter has multiple values, add it in the mutable array
-                [[queryDictionary objectForKey:key] addObject:value];
+            if (queryDict[key]) {
+                [[queryDict objectForKey:key] addObject:value];
             } else {
-                // Insert the value for query parameter as an element in mutable array
-                [queryDictionary setObject:[@[value] mutableCopy] forKey:key];
+                [queryDict setObject:[@[value] mutableCopy] forKey:key];
             }
         }
     }];
@@ -221,9 +148,9 @@
     for (NSString *key in sortedQuery) {
         [queryDict[key] sortUsingSelector:@selector(compare:)];
         for (NSString *parameterValue in queryDict[key]) {
-            [canonicalQueryString appendString:key];
+            [canonicalQueryString appendString:[TOSUtil URLEncode:key]];
             [canonicalQueryString appendString:@"="];
-            [canonicalQueryString appendString:parameterValue];
+            [canonicalQueryString appendString:[TOSUtil URLEncodingPath:parameterValue]];
             [canonicalQueryString appendString:@"&"];
         }
     }
@@ -316,7 +243,7 @@
     NSString *authorization = [NSString stringWithFormat:@"%@ Credential=%@, SignedHeaders=%@, Signature=%@",
                                @"TOS4-HMAC-SHA256",
                                signingCredential,
-                               [TOSSignV4 getSignedHeaders:signedHeaders],
+                               [TOSSignV4 getSignedHeaderString:signedHeaders],
                                signatureString];
     [urlRequest setValue:dateISO8601Time forHTTPHeaderField:@"Date"];
     [urlRequest setValue:dateISO8601Time forHTTPHeaderField:@"X-Tos-Date"];
@@ -349,7 +276,7 @@
     }
 
     NSString *canonicalURI;
-
+    NSCharacterSet *pathChars = [NSCharacterSet URLPathAllowedCharacterSet];
     canonicalURI = [NSString stringWithFormat:@"/%@",
                              [TOSUtil URLEncode:pathToEncode]];
 
@@ -374,7 +301,7 @@
     }
     [signedHeader setValue:urlRequest.URL.host forKey:@"host"];
     
-    [extra setValue:[TOSSignV4 getSignedHeaders:signedHeader] forKey: @"X-Tos-SignedHeaders"];
+    [extra setValue:[TOSSignV4 getSignedHeaderString:signedHeader] forKey: @"X-Tos-SignedHeaders"];
     
     NSMutableDictionary *signedQuery = [NSMutableDictionary dictionary];
     for (NSString *key in [input.tosQuery allKeys]) {
@@ -391,7 +318,7 @@
     }
     
     NSString *queryStr = [TOSSignV4 getCanonicalizedQueryStringWithDictionary:signedQuery];
-    NSString *canonicalRequest = [TOSSignV4 getCanonicalRequestForPresign:httpMethod
+    NSString *canonicalRequest = [TOSSignV4 getCanonicalRequest:httpMethod
                                  path:canonicalURI
                                 query:queryStr
                               headers:signedHeader

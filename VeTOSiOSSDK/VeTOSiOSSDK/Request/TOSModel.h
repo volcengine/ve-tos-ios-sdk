@@ -232,7 +232,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosProcessSaveAsObject;
 @property (nonatomic, copy) NSString *tosProcessSaveAsBucket;
 
-//@property (nonatomic, copy) TOSNetworkingDownloadProgressBlock tosDownloadProgress; // 下载进度条
+@property (nonatomic, copy) TOSNetworkingDownloadProgressBlock tosDownloadProgress; // 下载进度条
 @property (nonatomic, copy) TOSNetworkingOnRecieveDataBlock tosOnReceiveData;
 @end
 
@@ -372,7 +372,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosWebsiteRedirectLocation;
 @property (nonatomic, copy) TOSStorageClassType *tosStorageClass;
 
-//@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress;
+@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress; // 上传进度条
 
 @property (nonatomic, assign) uint64_t tosPreHashCrc64ecma;
 @end
@@ -511,7 +511,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface TOSPutObjectInput : TOSPutObjectBasicInput
-//@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress;
+@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress; // 上传进度条
 @property (nonatomic, strong) NSData *tosContent; // 为空代表上传空对象
 @end
 
@@ -528,7 +528,7 @@ NS_ASSUME_NONNULL_BEGIN
  上传对象/PutObjectFromFile
  */
 @interface TOSPutObjectFromFileInput : TOSPutObjectBasicInput
-//@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress; // 上传文件进度条
+@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress; // 上传文件进度条
 @property (nonatomic, copy) NSString *tosFilePath;
 @end
 
@@ -652,7 +652,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *tosServerSideEncryption;
 
-//@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress;
+@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress; // 上传进度条
 
 @end
 

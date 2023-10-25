@@ -550,7 +550,7 @@ static NSObject *uploadLock;
     requestDelegate.headerParams = [request headerParamsDict];
     requestDelegate.queryParams = [request queryParamsDict];
     requestDelegate.HTTPMethod = TOSHTTPMethodTypeGet;
-//    requestDelegate.downloadProgress = request.tosDownloadProgress;
+    requestDelegate.downloadProgress = request.tosDownloadProgress;
     requestDelegate.onRecieveData = request.tosOnReceiveData;
     
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypeGet OperationType:TOSOperationTypeGetObject];
@@ -581,7 +581,7 @@ static NSObject *uploadLock;
     requestDelegate.queryParams = [request queryParamsDict];
     requestDelegate.HTTPMethod = TOSHTTPMethodTypeGet;
     requestDelegate.downloadingFilePath = request.tosFilePath;
-//    requestDelegate.downloadProgress = request.tosDownloadProgress;
+    requestDelegate.downloadProgress = request.tosDownloadProgress;
     
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypeGet OperationType:TOSOperationTypeGetObjectToFile];
 }
@@ -644,9 +644,9 @@ static NSObject *uploadLock;
     if (request.tosContent) {
         requestDelegate.body = request.tosContent;
     }
-//    if (request.tosUploadProgress) {
-//        requestDelegate.uploadProgress = request.tosUploadProgress;
-//    }
+    if (request.tosUploadProgress) {
+        requestDelegate.uploadProgress = request.tosUploadProgress;
+    }
     requestDelegate.HTTPMethod = TOSHTTPMethodTypePost;
     
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePost OperationType:TOSOperationTypeAppendObject];
@@ -700,7 +700,7 @@ static NSObject *uploadLock;
 //    requestDelegate.body = request.content;
     requestDelegate.uploadingData = request.tosContent;
     requestDelegate.HTTPMethod = TOSHTTPMethodTypePut;
-//    requestDelegate.uploadProgress = request.tosUploadProgress;
+    requestDelegate.uploadProgress = request.tosUploadProgress;
     
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePut OperationType:TOSOperationTypePutObject];
 }
@@ -720,7 +720,7 @@ static NSObject *uploadLock;
     requestDelegate.object = request.tosKey;
     requestDelegate.headerParams = [request headerParamsDict];
     requestDelegate.uploadingFileURL = [NSURL fileURLWithPath:request.tosFilePath];
-//    requestDelegate.uploadProgress = request.tosUploadProgress;
+    requestDelegate.uploadProgress = request.tosUploadProgress;
 //    requestDelegate.uploadingData = [NSData dataWithContentsOfFile:request.filePath];
     requestDelegate.HTTPMethod = TOSHTTPMethodTypePut;
     
@@ -808,7 +808,7 @@ static NSObject *uploadLock;
     requestDelegate.HTTPMethod = TOSHTTPMethodTypePut;
     requestDelegate.uploadingData = request.tosContent;
     requestDelegate.partNumber = [NSNumber numberWithLong:request.tosPartNumber];
-//    requestDelegate.uploadProgress = request.tosUploadProgress;
+    requestDelegate.uploadProgress = request.tosUploadProgress;
     
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePut OperationType:TOSOperationTypeUploadPart];
 }

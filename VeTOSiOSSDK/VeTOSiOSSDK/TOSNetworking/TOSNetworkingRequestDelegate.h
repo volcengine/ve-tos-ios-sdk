@@ -64,8 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSNumber *partNumber;
 
-//@property (nonatomic, copy) TOSNetworkingUploadProgressBlock uploadProgress;
-//@property (nonatomic, copy) TOSNetworkingDownloadProgressBlock downloadProgress;
+@property (nonatomic, copy) TOSNetworkingUploadProgressBlock uploadProgress;
+@property (nonatomic, copy) TOSNetworkingDownloadProgressBlock downloadProgress;
 @property (nonatomic, copy) TOSNetworkingOnRecieveDataBlock onRecieveData;
 
 @end
