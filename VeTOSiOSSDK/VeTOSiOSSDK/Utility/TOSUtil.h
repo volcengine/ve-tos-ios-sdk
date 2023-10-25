@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)isValidBucketName:(NSString *)bucket withError:(NSError **)error;
 + (BOOL)isValidObjectName:(NSString *)object withError:(NSError **)error;
++ (BOOL)isValidInputStream:(NSInputStream *)stream withError:(NSError **)error;
 + (BOOL)isValidUTF8:(NSString *)stringToCheck;
 
 + (NSData *)fileMD5:(NSString *)path;
@@ -40,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (uint64_t)crc64ForCombineCRC1:(uint64_t)crc1 CRC2:(uint64_t)crc2 length:(uintmax_t)len2;
 
 + (NSString *)urlSafeBase64String:(NSString *)str;
++ (NSString *)base64StringFromDictionary:(NSDictionary *)dict;
 
 @end
 
