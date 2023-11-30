@@ -45,7 +45,7 @@ static NSMutableArray *_globalUserAgentPrefixes = nil;
         if (!localeIdentifier) {
             localeIdentifier = TOSServiceConfigurationUnknown;
         }
-        _userAgent = [NSString stringWithFormat:@"tos-sdk-iOS/%@ %@/%@ %@", @"2.0.0", systemName, systemVersion, localeIdentifier];
+        _userAgent = [NSString stringWithFormat:@"tos-sdk-iOS/%@ %@/%@ %@", @"2.1.4", systemName, systemVersion, localeIdentifier];
     });
     
     NSMutableString *userAgent = [NSMutableString stringWithString:_userAgent];

@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (uint64_t)crc64ForCombineCRC1:(uint64_t)crc1 CRC2:(uint64_t)crc2 length:(uintmax_t)len2;
 
 + (NSString *)urlSafeBase64String:(NSString *)str;
++ (NSString *)base64StringFromDictionary:(NSDictionary *)dict;
 
 @end
 

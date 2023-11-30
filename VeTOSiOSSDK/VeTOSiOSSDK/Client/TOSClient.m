@@ -847,6 +847,7 @@ static NSObject *uploadLock;
     
     requestDelegate.bucket = request.tosBucket;
     requestDelegate.object = request.tosKey;
+    requestDelegate.headerParams = [request headerParamsDict];
     requestDelegate.queryParams = [request queryParamsDict];
     requestDelegate.body = [request requestBody];
     

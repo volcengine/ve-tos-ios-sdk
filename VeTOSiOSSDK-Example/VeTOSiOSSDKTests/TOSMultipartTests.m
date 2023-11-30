@@ -493,4 +493,104 @@
     XCTAssertNil(task.result);
 }
 
+- (void)testAPI_multipartUploadsCallback {
+    TOSTask *task = nil;
+    // 1. 创建分段上传任务
+    TOSCreateMultipartUploadInput *createInput = [TOSCreateMultipartUploadInput new];
+    createInput.tosBucket = TOS_BUCKET;
+    createInput.tosKey = [NSString stringWithFormat:@"multipart-callback"];
+    task = [_client createMultipartUpload:createInput];
+    [task waitUntilFinished];
+
+    XCTAssertNil(task.error);
+    XCTAssertNotNil(task.result);
+    TOSCreateMultipartUploadOutput *createOutput = task.result;
+    XCTAssertEqual(200, createOutput.tosStatusCode);
+    
+    // 2. 开始上传
+    const int partSize = 3;
+    NSMutableArray *parts = [NSMutableArray array];
+    for (int i = 1; i <= partSize; i++) {
+        TOSUploadPartInput *upload = [TOSUploadPartInput new];
+        upload.tosKey = createOutput.tosKey;
+        upload.tosBucket = createOutput.tosBucket;
+        upload.tosUploadID = createOutput.tosUploadID;
+        upload.tosPartNumber = i;
+        upload.tosContent = [NSData dataWithContentsOfFile:_filePath];
+        task = [_client uploadPart:upload];
+        [task waitUntilFinished];
+        
+        XCTAssertNil(task.error);
+        XCTAssertNotNil(task.result);
+        TOSUploadPartOutput *upOutput = task.result;
+        
+        NSString *mString = upOutput.tosETag;
+        mString = [mString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        upOutput.tosETag = mString;
+        
+        TOSUploadedPart *uploadedPart = [TOSUploadedPart new];
+        uploadedPart.tosETag = mString;
+        uploadedPart.tosPartNumber = upOutput.tosPartNumber;
+                         
+        XCTAssertEqual(200, upOutput.tosStatusCode);
+        [parts addObject:upOutput];
+    }
+    XCTAssertEqual(partSize, [parts count]);
+    
+    // 3. 合并分段
+    TOSCompleteMultipartUploadInput *complete = [TOSCompleteMultipartUploadInput new];
+    complete.tosBucket = createOutput.tosBucket;
+    complete.tosKey = createOutput.tosKey;
+    complete.tosUploadID = createOutput.tosUploadID;
+    
+    NSMutableDictionary *dictCallback = [[NSMutableDictionary alloc] init];
+    [dictCallback setValue:TOS_CALLBACK_URL forKey:@"callbackUrl"];
+    [dictCallback setValue:@"{\"bucket\": ${bucket}, \"object\": ${object}, \"key1\": ${x:key1}}" forKey:@"callbackBody"];
+    [dictCallback setValue:@"application/json" forKey:@"callbackBodyType"];
+    
+
+    
+    NSMutableDictionary *dictCallbackVar = [[NSMutableDictionary alloc] init];
+    [dictCallbackVar setValue:@"ceshi" forKey:@"x:key1"];
+
+    NSString *callbackStr = [TOSUtil base64StringFromDictionary:dictCallback];
+    NSString *callbackVarStr = [TOSUtil base64StringFromDictionary:dictCallbackVar];
+    
+    complete.tosCallback = callbackStr;
+    complete.tosCallbackVar = callbackVarStr;
+    
+    NSMutableArray *comArray = [NSMutableArray array];
+    for (TOSUploadPartOutput *p in parts) {
+        TOSUploadedPart *comPart = [TOSUploadedPart new];
+        comPart.tosPartNumber = p.tosPartNumber;
+        comPart.tosETag = p.tosETag;
+        [comArray addObject:comPart];
+    }
+    XCTAssertEqual(partSize, [comArray count]);
+    complete.tosParts = comArray;
+    task = [_client completeMultipartUpload:complete];
+    [task waitUntilFinished];
+    XCTAssertNil(task.error);
+    XCTAssertNotNil(task.result);
+    TOSCompleteMultipartUploadOutput *comOutput = task.result;
+    XCTAssertLessThanOrEqual(200, comOutput.tosStatusCode);
+    XCTAssertNotNil(comOutput.tosLocation);
+    XCTAssertNotNil(comOutput.tosETag);
+    XCTAssertNotNil(comOutput.tosCallbackResult);
+    XCTAssertTrue([comOutput.tosCallbackResult containsString:@"ok"]);
+    NSLog(@"===>%@", comOutput.tosCallbackResult);
+    
+    
+    // 4. HeadObject检查属性
+    TOSHeadObjectInput *headInput = [TOSHeadObjectInput new];
+    headInput.tosBucket = createInput.tosBucket;
+    headInput.tosKey = createInput.tosKey;
+    task = [_client headObject:headInput];
+    [task waitUntilFinished];
+    XCTAssertNil(task.error);
+    XCTAssertNotNil(task.result);
+    TOSHeadObjectOutput *headOutput = task.result;
+    XCTAssertEqual(headOutput.tosVersionID, comOutput.tosVersionID);
+}
+
 @end

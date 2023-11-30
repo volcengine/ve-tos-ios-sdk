@@ -628,6 +628,13 @@
         [headerParams setObject:self.tosServerSideEncryption forKey:@"x-tos-server-side-encryption"];
     }
     
+    if (self.tosCallback) {
+        [headerParams setObject:self.tosCallback forKey:@"x-tos-callback"];
+    }
+    if (self.tosCallbackVar) {
+        [headerParams setObject:self.tosCallbackVar forKey:@"x-tos-callback-var"];
+    }
+    
     return headerParams;
 }
 
@@ -1009,6 +1016,17 @@
  合并段/CompleteMultipartUpload
  */
 @implementation TOSCompleteMultipartUploadInput
+
+- (NSDictionary *)headerParamsDict {
+    NSMutableDictionary *headerParams = [NSMutableDictionary dictionary];
+    if (self.tosCallback) {
+        [headerParams setObject:self.tosCallback forKey:@"x-tos-callback"];
+    }
+    if (self.tosCallbackVar) {
+        [headerParams setObject:self.tosCallbackVar forKey:@"x-tos-callback-var"];
+    }
+    return headerParams;
+}
 
 - (NSDictionary *)queryParamsDict {
     NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];

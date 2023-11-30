@@ -70,7 +70,6 @@
         XCTAssertTrue([t.result isKindOfClass:[TOSHeadBucketOutput class]]);
         TOSHeadBucketOutput *headOutput = t.result;
         XCTAssertEqual(200, headOutput.tosStatusCode);
-        NSLog(@"=====>  %@", headOutput.tosRegion);
         XCTAssertTrue([TOS_REGION isEqualToString:headOutput.tosRegion]);
         XCTAssertTrue([TOSStorageClassStandard isEqualToString:headOutput.tosStorageClass]);
         return nil;

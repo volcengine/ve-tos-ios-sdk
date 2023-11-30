@@ -281,4 +281,17 @@ int32_t const TOS_CHUNK_SIZE = 8 * 1024;
     return base64String;
 }
 
++ (NSString *)base64StringFromDictionary:(NSDictionary *)dict {
+    if (!dict) {
+        return @"e30=";
+    }
+    NSError *err;
+    NSData *originData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&err];
+    if (err) {
+        return @"e30=";
+    }
+    NSString * base64Str = [[[NSString alloc] initWithData:originData encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    return [[base64Str dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+}
+
 @end

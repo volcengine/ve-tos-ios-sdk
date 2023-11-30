@@ -660,6 +660,9 @@
                         output.tosETag = obj;
                     }
                 }];
+                if (_receivedData) {
+                    output.tosCallbackResult = [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding];
+                }
             }
             return output;
         }
@@ -747,6 +750,7 @@
         }
         case TOSOperationTypeCompleteMultipartUpload: {
             TOSCompleteMultipartUploadOutput *output = [TOSCompleteMultipartUploadOutput new];
+            __block BOOL isCallback = false;
             if (_response) {
                 [self parseNetworkingResponseCommonHeader:_response toOutputObject:output];
                 [[_response allHeaderFields] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
@@ -755,9 +759,22 @@
                         output.tosVersionID = obj;
                     } else if ([kk isEqualToString:@"x-tos-hash-crc64ecma"]) {
                         output.tosHashCrc64ecma = strtoull([obj UTF8String], NULL, 0);
+                    } else if ([kk isEqualToString:@"location"]) {
+                        isCallback = true;
+                        output.tosLocation = obj;
+                    } else if ([kk isEqualToString:@"etag"]) {
+                        isCallback = true;
+                        output.tosETag = obj;
                     }
                 }];
             }
+            if (isCallback) {
+                if (_receivedData) {
+                    output.tosCallbackResult = [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding];
+                }
+                return output;
+            }
+            
             if (_receivedData) {
                 id body = [NSJSONSerialization JSONObjectWithData:_receivedData options:0 error:NULL];
                 if (body) {
