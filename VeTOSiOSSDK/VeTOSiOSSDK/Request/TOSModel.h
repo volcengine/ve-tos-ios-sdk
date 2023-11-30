@@ -508,6 +508,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> *tosMeta;
 @property (nonatomic, copy) NSString *tosWebsiteRedirectLocation;
 @property (nonatomic, copy) TOSStorageClassType *tosStorageClass;
+
+@property (nonatomic, copy) NSString *tosCallback;
+@property (nonatomic, copy) NSString *tosCallbackVar;
+
 @end
 
 @interface TOSPutObjectInput : TOSPutObjectBasicInput
@@ -521,6 +525,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosSSECKeyMD5;
 @property (nonatomic, copy) NSString *tosVersionID;
 @property (nonatomic, assign) uint64_t tosHashCrc64ecma;
+
+@property (nonatomic, copy) NSString *tosCallbackResult;
+
 @end
 
 
@@ -708,6 +715,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosUploadID; // required
 @property (nonatomic, strong, nonnull) NSArray<TOSUploadedPart *> *tosParts; // required, not empty
 
+@property (nonatomic, copy) NSString *tosCallback;
+@property (nonatomic, copy) NSString *tosCallbackVar;
+
 @end
 
 @interface TOSCompleteMultipartUploadOutput : TOSOutput
@@ -718,6 +728,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosLocation;
 @property (nonatomic, copy) NSString *tosVersionID;
 @property (nonatomic, assign) uint64_t tosHashCrc64ecma;
+
+@property (nonatomic, copy) NSString *tosCallbackResult;
 
 @end
 

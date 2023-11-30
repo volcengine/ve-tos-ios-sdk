@@ -26,6 +26,7 @@
 * 支持数据处理转存参数 tosProcessSaveAsObject & tosProcessSaveAsBucket
 * 上传、下载进度条
 
+<<<<<<< HEAD
 
 ## 版本号：v2.1.2 日期：2023-09-13
 
@@ -43,4 +44,6 @@
 
 ### 变更内容
 
-* 第一次正式发布
+
+
+* PutObject、CompleteMultipartUpload支持回调函数
