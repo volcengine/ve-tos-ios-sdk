@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) TOSURLRequestRetryHandler *retryHandler;
 
 @property (nonatomic, strong) NSURL *uploadingFileURL;
+@property (nonatomic, strong) NSInputStream *inputStream;
 @property (nonatomic, strong) NSURL *downloadingFileURL;
 @property (nonatomic, copy) NSString *downloadingFilePath;
 

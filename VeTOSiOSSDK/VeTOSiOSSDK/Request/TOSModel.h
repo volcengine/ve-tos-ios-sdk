@@ -547,6 +547,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) uint64_t tosHashCrc64ecma;
 @end
 
+/**
+ 上传对象/PutObjectFromStream
+ */
+@interface TOSPutObjectFromStreamInput : TOSPutObjectBasicInput
+@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress; // 上传进度条
+@property (nonatomic, strong) NSInputStream *tosInputStream; // 输入流
+@end
+
+@interface TOSPutObjectFromStreamOutput: TOSOutput
+@property (nonatomic, copy) NSString *tosETag;
+@property (nonatomic, copy) NSString *tosSSECAlgorithm;
+@property (nonatomic, copy) NSString *tosSSECKeyMD5;
+@property (nonatomic, copy) NSString *tosVersionID;
+@property (nonatomic, assign) uint64_t tosHashCrc64ecma;
+@end
 
 /**
  设置对象访问权限/PutObjectACL
