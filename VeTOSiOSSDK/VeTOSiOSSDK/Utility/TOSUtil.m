@@ -191,6 +191,20 @@ int32_t const TOS_CHUNK_SIZE = 8 * 1024;
     return YES;
 }
 
++ (BOOL)isValidInputStream:(NSInputStream *)stream withError:(NSError *__autoreleasing  _Nullable *)error {
+    if (!stream) {
+        NSDictionary *userInfo = @{TOSErrorMessageTOKEN: @"input stream is nil"};
+        *error = [NSError errorWithDomain:TOSClientErrorDomain code:400 userInfo:userInfo];
+        return NO;
+    }
+    if (stream.streamStatus != NSStreamStatusNotOpen) {
+        NSDictionary *userInfo = @{TOSErrorMessageTOKEN: [NSString stringWithFormat:@"input stream status is invalid (%ld)", stream.streamStatus]};
+        *error = [NSError errorWithDomain:TOSClientErrorDomain code:400 userInfo:userInfo];
+        return NO;
+    }
+    return YES;
+}
+
 + (BOOL)isValidUTF8:(NSString *)stringToCheck {
     return ([stringToCheck UTF8String] != nil);
 }

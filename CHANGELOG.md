@@ -30,3 +30,10 @@
 ### 变更内容
 
 * PutObject、CompleteMultipartUpload支持回调函数
+
+
+## 版本号：v2.1.5 日期：2024-08-29
+
+### 变更内容
+
+* 流式上传

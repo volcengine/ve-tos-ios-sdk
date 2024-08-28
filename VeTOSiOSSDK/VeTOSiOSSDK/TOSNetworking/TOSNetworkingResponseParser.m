@@ -619,6 +619,28 @@
             }
             return output;
         }
+        case TOSOperationTypePutObjectFromStream: {
+            // 流式上传
+            TOSPutObjectFromStreamOutput *output = [TOSPutObjectFromStreamOutput new];
+            if (_response) {
+                [self parseNetworkingResponseCommonHeader:_response toOutputObject:output];
+                [[_response allHeaderFields] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                    NSString *kk = [(NSString *)key lowercaseString];
+                    if ([kk isEqualToString:@"x-tos-server-side-encryption-customer-algorithm"]) {
+                        output.tosSSECAlgorithm = obj;
+                    } else if ([kk isEqualToString:@"x-tos-server-side-encryption-customer-key-md5"]) {
+                        output.tosSSECKeyMD5 = obj;
+                    } else if ([kk isEqualToString:@"x-tos-version-id"]) {
+                        output.tosVersionID = obj;
+                    } else if ([kk isEqualToString:@"x-tos-hash-crc64ecma"]) {
+                        output.tosHashCrc64ecma = strtoull([obj UTF8String], NULL, 0);
+                    } else if ([kk isEqualToString:@"etag"]) {
+                        output.tosETag = obj;
+                    }
+                }];
+            }
+            return output;
+        }
         case TOSOperationTypePutObjectFromFile: {
             // 上传对象
             TOSPutObjectFromFileOutput *output = [TOSPutObjectFromFileOutput new];

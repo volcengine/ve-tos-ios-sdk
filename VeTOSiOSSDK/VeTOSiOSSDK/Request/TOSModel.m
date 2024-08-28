@@ -722,6 +722,84 @@
 @implementation TOSPutObjectFromFileOutput
 @end
 
+@implementation TOSPutObjectFromStreamInput
+
+- (NSDictionary *)headerParamsDict {
+    NSMutableDictionary *headerParams = [NSMutableDictionary dictionary];
+    
+    if (self.tosContentLength) {
+        [headerParams setValue:[NSString stringWithFormat:@"%lld", self.tosContentLength] forKey:@"Content-Length"];
+    }
+    if (self.tosContentMD5) {
+        [headerParams setValue:self.tosContentMD5 forKey:@"Content-MD5"];
+    }
+    if (self.tosContentType) {
+        [headerParams setValue:self.tosContentType forKey:@"Content-Type"];
+    }
+    if (self.tosCacheControl) {
+        [headerParams setValue:self.tosCacheControl forKey:@"Cache-Control"];
+    }
+    if (self.tosExpires) {
+        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"EEE, dd MM yyyy HH:mm:ss 'GMT'"];
+        [headerParams setValue:[formater stringFromDate:self.tosExpires] forKey:@"Expires"];
+    }
+    if (self.tosContentDisposition) {
+        [headerParams setValue:self.tosContentDisposition forKey:@"Content-Disposition"];
+    }
+    if (self.tosContentEncoding) {
+        [headerParams setValue:self.tosContentEncoding forKey:@"Content-Encoding"];
+    }
+    if (self.tosContentLanguage) {
+        [headerParams setValue:self.tosContentLanguage forKey:@"Content-Language"];
+    }
+    if (self.tosACL) {
+        [headerParams setValue:self.tosACL forKey:@"x-tos-acl"];
+    }
+    if (self.tosGrantFullControl) {
+        [headerParams setValue:self.tosGrantFullControl forKey:@"x-tos-grant-full-control"];
+    }
+    if (self.tosGrantRead) {
+        [headerParams setValue:self.tosGrantRead forKey:@"x-tos-grant-read"];
+    }
+    if (self.tosGrantReadAcp) {
+        [headerParams setValue:self.tosGrantReadAcp forKey:@"x-tos-grant-read-acp"];
+    }
+    if (self.tosGrantWriteAcp) {
+        [headerParams setValue:self.tosGrantWriteAcp forKey:@"x-tos-grant-write-acp"];
+    }
+    if (self.tosMeta) {
+        for (id key in self.tosMeta) {
+            [headerParams setObject:self.tosMeta[key] forKey:[NSString stringWithFormat:@"x-tos-meta-%@", key]];
+        }
+    }
+    if (self.tosSSECAlgorithm) {
+        [headerParams setObject:self.tosSSECAlgorithm forKey:@"x-tos-server-side-encryption-customer-algorithm"];
+    }
+    if (self.tosSSECKey) {
+        [headerParams setObject:self.tosSSECKey forKey:@"x-tos-server-side-encryption-customer-key"];
+    }
+    if (self.tosSSECKeyMD5) {
+        [headerParams setObject:self.tosSSECKeyMD5 forKey:@"x-tos-server-side-encryption-customer-key-md5"];
+    }
+    if (self.tosWebsiteRedirectLocation) {
+        [headerParams setValue:self.tosWebsiteRedirectLocation forKey:@"x-tos-website-redirect-location"];
+    }
+    if (self.tosStorageClass) {
+        [headerParams setValue:self.tosStorageClass forKey:@"x-tos-storage-class"];
+    }
+    if (self.tosServerSideEncryption) {
+        [headerParams setObject:self.tosServerSideEncryption forKey:@"x-tos-server-side-encryption"];
+    }
+    
+    return headerParams;
+}
+
+@end
+
+@implementation TOSPutObjectFromStreamOutput
+
+@end
 
 /**
  设置对象访问权限/PutObjectACL
