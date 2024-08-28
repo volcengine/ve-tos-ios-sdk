@@ -27,4 +27,6 @@
 #define TOS_BUCKET @"bucket"
 #define TOS_FILE @"file"
 
+#define TOS_STREAM_URL @""
+
 #endif /* TOSTestConstants_h */

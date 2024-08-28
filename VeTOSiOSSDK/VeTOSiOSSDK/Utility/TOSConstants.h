@@ -117,6 +117,7 @@ typedef NS_ENUM(NSInteger, TOSOperationType) {
     TOSOperationTypeListObjectVersions,
     TOSOperationTypePutObject,
     TOSOperationTypePutObjectFromFile,
+    TOSOperationTypePutObjectFromStream,
     TOSOperationTypePutObjectACL,
     TOSOperationTypeSetObjectMeta,
     
