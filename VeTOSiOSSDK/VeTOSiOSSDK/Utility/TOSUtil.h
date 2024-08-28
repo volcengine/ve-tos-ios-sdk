@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)isValidBucketName:(NSString *)bucket withError:(NSError **)error;
 + (BOOL)isValidObjectName:(NSString *)object withError:(NSError **)error;
++ (BOOL)isValidInputStream:(NSInputStream *)stream withError:(NSError **)error;
 + (BOOL)isValidUTF8:(NSString *)stringToCheck;
 
 + (NSData *)fileMD5:(NSString *)path;

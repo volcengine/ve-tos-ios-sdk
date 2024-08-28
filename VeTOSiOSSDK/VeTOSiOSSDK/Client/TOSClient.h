@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (TOSTask *)putObjectFromFile:(TOSPutObjectFromFileInput *)request;
 - (TOSTask *)putObjectAcl:(TOSPutObjectACLInput *)request;
 - (TOSTask *)setObjectMeta:(TOSSetObjectMetaInput *)request;
+- (TOSTask *)putObjectFromStream:(TOSPutObjectFromStreamInput *)request;
 
 @end
 
