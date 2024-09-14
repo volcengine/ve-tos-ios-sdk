@@ -714,6 +714,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 上传段/UploadPartFromStream
+ */
+@interface TOSUploadPartFromStreamInput : TOSUploadPartBasicInput
+
+@property (nonatomic, strong) NSInputStream *tosInputStream; // 输入流
+@property (nonatomic, assign) int64_t tosContentLength;
+
+@end
+
+@interface TOSUploadPartFromStreamOutput : TOSUploadPartOutput
+
+@end
+
+/**
  合并段/CompleteMultipartUpload
  */
 @interface TOSUploadedPart : NSObject

@@ -1089,6 +1089,41 @@
 @implementation TOSUploadPartFromFileOutput
 @end
 
+@implementation TOSUploadPartFromStreamInput
+
+- (NSDictionary *)queryParamsDict {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
+    
+    [queryParams setValue:[NSString stringWithFormat:@"%d", self.tosPartNumber] forKey:@"partNumber"];
+    
+    [queryParams setValue:self.tosUploadID forKey:@"uploadId"];
+    
+    return queryParams;
+}
+
+- (NSDictionary *)headerParamsDict {
+    NSMutableDictionary *headerParams = [NSMutableDictionary dictionary];
+    
+    if (self.tosContentMD5) {
+        [headerParams setValue:self.tosContentMD5 forKey:@"Content-MD5"];
+    }
+    if (self.tosSSECAlgorithm) {
+        [headerParams setValue:self.tosServerSideEncryption forKey:@"x-tos-server-side-encryption-customer-algorithm"];
+    }
+    if (self.tosSSECKey) {
+        [headerParams setValue:self.tosSSECKey forKey:@"x-tos-server-side-encryption-customer-key"];
+    }
+    if (self.tosSSECKeyMD5) {
+        [headerParams setValue:self.tosSSECKeyMD5 forKey:@"x-tos-server-side-encryption-customer-key-MD5"];
+    }
+    
+    return headerParams;
+}
+
+@end
+
+@implementation TOSUploadPartFromStreamOutput
+@end
 
 /**
  合并段/CompleteMultipartUpload

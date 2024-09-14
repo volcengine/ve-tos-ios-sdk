@@ -124,6 +124,7 @@ typedef NS_ENUM(NSInteger, TOSOperationType) {
     TOSOperationTypeCreateMultipartUpload,
     TOSOperationTypeUploadPart,
     TOSOperationTypeUploadPartFromFile,
+    TOSOperationTypeUploadPartFromStream,
     TOSOperationTypeCompleteMultipartUpload,
     TOSOperationTypeAbortMultipartUpload,
     TOSOperationTypeUploadPartCopy,

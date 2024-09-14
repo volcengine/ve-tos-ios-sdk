@@ -121,6 +121,7 @@
     }] waitUntilFinished];
 }
 
+
 // 文件流
 - (void)testAPI_FromFile {
     for (NSInteger idx = 0; idx < _fileNames.count; idx++) {
@@ -261,4 +262,94 @@
     }] waitUntilFinished];
 }
 
+
+// 多段流式上传
+- (void)testAPI_upload_part_from_stream {
+    TOSTask *task = nil;
+    // 1. 创建分段上传任务
+    TOSCreateMultipartUploadInput *create = [TOSCreateMultipartUploadInput new];
+    create.tosBucket = TOS_BUCKET;
+    create.tosKey = [NSString stringWithFormat:@"upload-file-stream"];
+    task = [_client createMultipartUpload:create];
+    [task waitUntilFinished];
+
+    XCTAssertNil(task.error);
+    XCTAssertNotNil(task.result);
+    TOSCreateMultipartUploadOutput *createOutput = task.result;
+    XCTAssertEqual(200, createOutput.tosStatusCode);
+    
+    // 2. 开始上传
+    NSMutableArray *parts = [NSMutableArray array];
+    for (NSInteger idx = 1; idx < 3; idx++){
+        NSMutableData *data = [NSMutableData dataWithLength:101 * 1024]; // 101KB
+        uint8_t *bytes = [data mutableBytes];
+        for (NSInteger i = 0; i < data.length; i++) {
+            bytes[i] = (uint8_t)(idx);
+        }
+        NSInputStream *inputStream = [[NSInputStream alloc] initWithData:data];
+
+        
+        TOSUploadPartFromStreamInput *uploadInput = [TOSUploadPartFromStreamInput new];
+        uploadInput.tosKey = createOutput.tosKey;
+        uploadInput.tosBucket = createOutput.tosBucket;
+        uploadInput.tosUploadID = createOutput.tosUploadID;
+        uploadInput.tosPartNumber = (int)idx;
+        uploadInput.tosInputStream = inputStream;
+        
+        
+        
+        task = [_client uploadPartFromStream:uploadInput];
+        [task waitUntilFinished];
+        XCTAssertNil(task.error);
+        XCTAssertNotNil(task.result);
+        TOSUploadPartFromStreamOutput *upOutput = task.result;
+        
+        NSString *mString = upOutput.tosETag;
+        mString = [mString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        upOutput.tosETag = mString;
+        
+        TOSUploadedPart *uploadedPart = [TOSUploadedPart new];
+        uploadedPart.tosETag = mString;
+        uploadedPart.tosPartNumber = upOutput.tosPartNumber;
+                         
+        XCTAssertEqual(200, upOutput.tosStatusCode);
+        [parts addObject:uploadedPart];
+    }
+    XCTAssertEqual(2, [parts count]);
+    
+    // 3. 合并分段
+    TOSCompleteMultipartUploadInput *complete = [TOSCompleteMultipartUploadInput new];
+    complete.tosBucket = createOutput.tosBucket;
+    complete.tosKey = createOutput.tosKey;
+    complete.tosUploadID = createOutput.tosUploadID;
+    NSMutableArray *comArray = [NSMutableArray array];
+    for (TOSUploadPartOutput *p in parts) {
+        TOSUploadedPart *comPart = [TOSUploadedPart new];
+        comPart.tosPartNumber = p.tosPartNumber;
+        comPart.tosETag = p.tosETag;
+        [comArray addObject:comPart];
+    }
+    XCTAssertEqual(2, [comArray count]);
+    complete.tosParts = comArray;
+    task = [_client completeMultipartUpload:complete];
+    [task waitUntilFinished];
+    XCTAssertNil(task.error);
+    XCTAssertNotNil(task.result);
+    TOSCompleteMultipartUploadOutput *comOutput = task.result;
+    XCTAssertLessThanOrEqual(200, comOutput.tosStatusCode);
+    
+    // 4. HeadObject检查属性
+    TOSHeadObjectInput *headInput = [TOSHeadObjectInput new];
+    headInput.tosBucket = create.tosBucket;
+    headInput.tosKey = create.tosKey;
+    task = [_client headObject:headInput];
+    [task waitUntilFinished];
+    XCTAssertNil(task.error);
+    XCTAssertNotNil(task.result);
+    TOSHeadObjectOutput *headOutput = task.result;
+    XCTAssertEqual(headOutput.tosVersionID, comOutput.tosVersionID);
+}
+
 @end
+
+
