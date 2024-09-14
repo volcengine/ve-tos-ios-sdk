@@ -79,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (TOSTask *)createMultipartUpload:(TOSCreateMultipartUploadInput *)request;
 - (TOSTask *)uploadPart:(TOSUploadPartInput *)request;
 - (TOSTask *)uploadPartFromFile:(TOSUploadPartFromFileInput *)request;
+- (TOSTask *)uploadPartFromStream:(TOSUploadPartFromStreamInput *)request;
 - (TOSTask *)completeMultipartUpload:(TOSCompleteMultipartUploadInput *)request;
 - (TOSTask *)abortMultipartUpload:(TOSAbortMultipartUploadInput *)request;
 - (TOSTask *)uploadPartCopy:(TOSUploadPartCopyInput *)request;
