@@ -727,6 +727,30 @@ static NSObject *uploadLock;
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePut OperationType:TOSOperationTypePutObjectFromFile];
 }
 
+- (TOSTask *)putObjectFromStream:(TOSPutObjectFromStreamInput *)request {
+    TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
+    
+    NSError *error = nil;
+    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+    if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+    if (![TOSUtil isValidInputStream:request.tosInputStream withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+    
+    requestDelegate.bucket = request.tosBucket;
+    requestDelegate.object = request.tosKey;
+    requestDelegate.headerParams = [request headerParamsDict];
+    requestDelegate.inputStream = request.tosInputStream;
+    requestDelegate.uploadProgress = request.tosUploadProgress;
+    requestDelegate.HTTPMethod = TOSHTTPMethodTypePut;
+    
+    return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePut OperationType:TOSOperationTypePutObjectFromStream];
+}
+
 - (TOSTask *)putObjectAcl:(TOSPutObjectACLInput *)request {
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
@@ -834,6 +858,31 @@ static NSObject *uploadLock;
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePut OperationType:TOSOperationTypeUploadPartFromFile];
 }
 
+- (TOSTask *)uploadPartFromStream:(TOSUploadPartFromStreamInput *)request{
+    TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
+    
+    NSError *error = nil;
+    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+    if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+    if (![TOSUtil isValidInputStream:request.tosInputStream withError:&error]) {
+            return [TOSTask taskWithError:error];
+        }
+    
+    requestDelegate.bucket = request.tosBucket;
+    requestDelegate.object = request.tosKey;
+    requestDelegate.queryParams = [request queryParamsDict];
+    requestDelegate.headerParams = [request headerParamsDict];
+    requestDelegate.inputStream = request.tosInputStream;
+    requestDelegate.partNumber = [NSNumber numberWithLong:request.tosPartNumber];
+    
+    return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePut OperationType:TOSOperationTypeUploadPartFromStream];
+    
+}
+
 - (TOSTask *)completeMultipartUpload:(TOSCompleteMultipartUploadInput *)request {
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
@@ -847,6 +896,7 @@ static NSObject *uploadLock;
     
     requestDelegate.bucket = request.tosBucket;
     requestDelegate.object = request.tosKey;
+    requestDelegate.headerParams = [request headerParamsDict];
     requestDelegate.queryParams = [request queryParamsDict];
     requestDelegate.body = [request requestBody];
     

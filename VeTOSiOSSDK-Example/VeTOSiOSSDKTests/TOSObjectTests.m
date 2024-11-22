@@ -408,6 +408,40 @@
     }] waitUntilFinished];
 }
 
+- (void)testAPI_putObjectCallBack {
+    TOSPutObjectInput *putInput = [TOSPutObjectInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = @"hello";
+    putInput.tosContent = [@"hello world." dataUsingEncoding:kCFStringEncodingUTF8];
+    
+    NSMutableDictionary *dictCallback = [[NSMutableDictionary alloc] init];
+    [dictCallback setValue:TOS_CALLBACK_URL forKey:@"callbackUrl"];
+    [dictCallback setValue:@"{\"bucket\": ${bucket}, \"object\": ${object}, \"key1\": ${x:key1}}" forKey:@"callbackBody"];
+    [dictCallback setValue:@"application/json" forKey:@"callbackBodyType"];
+    
+    NSMutableDictionary *dictCallbackVar = [[NSMutableDictionary alloc] init];
+    [dictCallbackVar setValue:@"ceshi" forKey:@"x:key1"];
+
+    NSString *callbackStr = [TOSUtil base64StringFromDictionary:dictCallback];
+    NSString *callbackVarStr = [TOSUtil base64StringFromDictionary:dictCallbackVar];
+ 
+    putInput.tosCallback = callbackStr;
+    putInput.tosCallbackVar = callbackVarStr;
+    
+    TOSTask *task = [_client putObject:putInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutObjectOutput class]]);
+        TOSPutObjectOutput *putOutput = t.result;
+        XCTAssertEqual(200, putOutput.tosStatusCode);
+        XCTAssertNotNil(putOutput.tosCallbackResult);
+        XCTAssertTrue([putOutput.tosCallbackResult containsString:@"ok"]);
+        return nil;
+    }] waitUntilFinished];
+
+}
+
 // Object Test
 // 1. 上传对象不包含可选参数
 - (void)testAPI_putObject01 {

@@ -508,6 +508,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> *tosMeta;
 @property (nonatomic, copy) NSString *tosWebsiteRedirectLocation;
 @property (nonatomic, copy) TOSStorageClassType *tosStorageClass;
+
+@property (nonatomic, copy) NSString *tosCallback;
+@property (nonatomic, copy) NSString *tosCallbackVar;
+
 @end
 
 @interface TOSPutObjectInput : TOSPutObjectBasicInput
@@ -521,6 +525,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosSSECKeyMD5;
 @property (nonatomic, copy) NSString *tosVersionID;
 @property (nonatomic, assign) uint64_t tosHashCrc64ecma;
+
+@property (nonatomic, copy) NSString *tosCallbackResult;
+
 @end
 
 
@@ -540,6 +547,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) uint64_t tosHashCrc64ecma;
 @end
 
+/**
+ 上传对象/PutObjectFromStream
+ */
+@interface TOSPutObjectFromStreamInput : TOSPutObjectBasicInput
+@property (nonatomic, copy) TOSNetworkingUploadProgressBlock tosUploadProgress; // 上传进度条
+@property (nonatomic, strong) NSInputStream *tosInputStream; // 输入流
+@end
+
+@interface TOSPutObjectFromStreamOutput: TOSOutput
+@property (nonatomic, copy) NSString *tosETag;
+@property (nonatomic, copy) NSString *tosSSECAlgorithm;
+@property (nonatomic, copy) NSString *tosSSECKeyMD5;
+@property (nonatomic, copy) NSString *tosVersionID;
+@property (nonatomic, assign) uint64_t tosHashCrc64ecma;
+@end
 
 /**
  设置对象访问权限/PutObjectACL
@@ -692,6 +714,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 上传段/UploadPartFromStream
+ */
+@interface TOSUploadPartFromStreamInput : TOSUploadPartBasicInput
+
+@property (nonatomic, strong) NSInputStream *tosInputStream; // 输入流
+@property (nonatomic, assign) int64_t tosContentLength;
+
+@end
+
+@interface TOSUploadPartFromStreamOutput : TOSUploadPartOutput
+
+@end
+
+/**
  合并段/CompleteMultipartUpload
  */
 @interface TOSUploadedPart : NSObject
@@ -708,6 +744,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosUploadID; // required
 @property (nonatomic, strong, nonnull) NSArray<TOSUploadedPart *> *tosParts; // required, not empty
 
+@property (nonatomic, copy) NSString *tosCallback;
+@property (nonatomic, copy) NSString *tosCallbackVar;
+
 @end
 
 @interface TOSCompleteMultipartUploadOutput : TOSOutput
@@ -718,6 +757,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosLocation;
 @property (nonatomic, copy) NSString *tosVersionID;
 @property (nonatomic, assign) uint64_t tosHashCrc64ecma;
+
+@property (nonatomic, copy) NSString *tosCallbackResult;
 
 @end
 

@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (TOSTask *)putObjectFromFile:(TOSPutObjectFromFileInput *)request;
 - (TOSTask *)putObjectAcl:(TOSPutObjectACLInput *)request;
 - (TOSTask *)setObjectMeta:(TOSSetObjectMetaInput *)request;
+- (TOSTask *)putObjectFromStream:(TOSPutObjectFromStreamInput *)request;
 
 @end
 
@@ -78,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (TOSTask *)createMultipartUpload:(TOSCreateMultipartUploadInput *)request;
 - (TOSTask *)uploadPart:(TOSUploadPartInput *)request;
 - (TOSTask *)uploadPartFromFile:(TOSUploadPartFromFileInput *)request;
+- (TOSTask *)uploadPartFromStream:(TOSUploadPartFromStreamInput *)request;
 - (TOSTask *)completeMultipartUpload:(TOSCompleteMultipartUploadInput *)request;
 - (TOSTask *)abortMultipartUpload:(TOSAbortMultipartUploadInput *)request;
 - (TOSTask *)uploadPartCopy:(TOSUploadPartCopyInput *)request;

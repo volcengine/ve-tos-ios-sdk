@@ -45,7 +45,7 @@ static NSMutableArray *_globalUserAgentPrefixes = nil;
         if (!localeIdentifier) {
             localeIdentifier = TOSServiceConfigurationUnknown;
         }
-        _userAgent = [NSString stringWithFormat:@"tos-sdk-iOS/%@ %@/%@ %@", @"2.0.0", systemName, systemVersion, localeIdentifier];
+        _userAgent = [NSString stringWithFormat:@"tos-sdk-iOS/%@ %@/%@ %@", @"2.1.4", systemName, systemVersion, localeIdentifier];
     });
     
     NSMutableString *userAgent = [NSMutableString stringWithString:_userAgent];
@@ -208,23 +208,33 @@ static NSMutableArray *_globalUserAgentPrefixes = nil;
         }
         return task;
     }] continueWithSuccessBlock:^id _Nullable(TOSTask * _Nonnull task) {
-        NSURLSessionDataTask * sessionTask = nil;
+        // 普通请求
+        NSURLSessionDataTask * sessionDataTask = nil;
+        // 流式上传
+        NSURLSessionUploadTask *sessionUploadTask = nil;
         if (self.configuration.timeoutIntervalForRequest > 0) {
             delegate.internalRequest.timeoutInterval = self.configuration.timeoutIntervalForRequest;
         }
         
         if (delegate.uploadingFileURL) {
-            sessionTask = [self.session uploadTaskWithRequest:delegate.internalRequest fromFile:delegate.uploadingFileURL];
+            sessionDataTask = [self.session uploadTaskWithRequest:delegate.internalRequest fromFile:delegate.uploadingFileURL];
         } else if (delegate.uploadingData) {
-            sessionTask = [self.session uploadTaskWithRequest:delegate.internalRequest fromData:delegate.uploadingData];
+            sessionDataTask = [self.session uploadTaskWithRequest:delegate.internalRequest fromData:delegate.uploadingData];
+        } else if (delegate.inputStream) {
+            sessionUploadTask = [self.session uploadTaskWithStreamedRequest:delegate.internalRequest];
         } else {
-            sessionTask = [self.session dataTaskWithRequest:delegate.internalRequest];
+            sessionDataTask = [self.session dataTaskWithRequest:delegate.internalRequest];
+        }
+        if (sessionDataTask) {
+            [self.sessionDelagateManager setObject:delegate forKey:@(sessionDataTask.taskIdentifier)];
+            // 启动Task
+            [sessionDataTask resume];
+        } else {
+            [self.sessionDelagateManager setObject:delegate forKey:@(sessionUploadTask.taskIdentifier)];
+            // 启动Task
+            [sessionUploadTask resume];
         }
         
-        [self.sessionDelagateManager setObject:delegate forKey:@(sessionTask.taskIdentifier)];
-        
-        // 启动Task
-        [sessionTask resume];
         return task;
     }] continueWithBlock:^id _Nullable(TOSTask * _Nonnull task) {
         if (task.error) {
@@ -233,6 +243,16 @@ static NSMutableArray *_globalUserAgentPrefixes = nil;
         }
         return nil;
     }];
+}
+
+#pragma mark - NSURLSessionTaskDelegate
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)sessionTask needNewBodyStream:(void (^)(NSInputStream * _Nullable))completionHandler {
+    TOSNetworkingRequestDelegate * delegate = [self.sessionDelagateManager objectForKey:@(sessionTask.taskIdentifier)];
+    if (!delegate) {
+        return;
+    }
+    completionHandler(delegate.inputStream);
 }
 
 #pragma mark - NSURLSessionDelegate

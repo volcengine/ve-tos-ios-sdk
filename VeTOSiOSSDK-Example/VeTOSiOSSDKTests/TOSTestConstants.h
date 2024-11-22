@@ -22,8 +22,11 @@
 #define TOS_SECRETKEY @"SK"
 #define TOS_ENDPOINT @"endpoint"
 #define TOS_REGION @"region"
+#define TOS_CALLBACK_URL @"callback-url"
 
 #define TOS_BUCKET @"bucket"
 #define TOS_FILE @"file"
+
+#define TOS_STREAM_URL @""
 
 #endif /* TOSTestConstants_h */
