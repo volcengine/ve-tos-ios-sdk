@@ -498,7 +498,7 @@
     }] waitUntilFinished];
 }
 
-// 2. 上传对象包含所有参数 TODO: 所有参数
+// 2. 上传对象包含所有参数
 - (void)testAPI_putObject02 {
     TOSPutObjectInput *putInput = [TOSPutObjectInput new];
     putInput.tosBucket = _privateBucket;
@@ -940,7 +940,7 @@
         NSLog(@"tosContentDisposition: %@", headOutput.tosContentDisposition);
         NSLog(@"tosContentEncoding: %@", headOutput.tosContentEncoding);
         NSLog(@"tosContentLanguage: %@", headOutput.tosContentLanguage);
-        NSLog(@"tosExpire: %@", headOutput.tosExpires); // TODO: 确认返回值
+        NSLog(@"tosExpire: %@", headOutput.tosExpires);
         return nil;
     }] waitUntilFinished];
 }
@@ -1064,7 +1064,7 @@
         NSLog(@"tosContentDisposition: %@", headOutput.tosContentDisposition);
         NSLog(@"tosContentEncoding: %@", headOutput.tosContentEncoding);
         NSLog(@"tosContentLanguage: %@", headOutput.tosContentLanguage);
-        NSLog(@"tosExpire: %@", headOutput.tosExpires); // TODO: 确认返回值
+        NSLog(@"tosExpire: %@", headOutput.tosExpires);
         return nil;
     }] waitUntilFinished];
 }
