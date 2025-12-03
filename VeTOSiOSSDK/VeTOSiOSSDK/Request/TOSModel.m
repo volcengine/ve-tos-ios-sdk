@@ -922,6 +922,34 @@
 
 
 /**
+ 设置对象过期时间/SetObjectExpires
+ */
+@implementation TOSSetObjectExpiresInput
+
+- (NSDictionary *)queryParamsDict {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
+    
+    [queryParams setValue:@"" forKey:@"objectExpires"];
+    if (_tosVersionID) {
+        [queryParams setValue:_tosVersionID forKey:@"versionId"];
+    }
+    
+    return queryParams;
+}
+
+- (NSData *)requestBody {
+    NSMutableDictionary *bodyDict = [NSMutableDictionary dictionary];
+    [bodyDict setValue:@(_objectExpires) forKey:@"ObjectExpires"];
+
+    return [NSJSONSerialization dataWithJSONObject:bodyDict options:0 error:NULL];
+}
+@end
+
+@implementation TOSSetObjectExpiresOutput
+@end
+
+
+/**
  创建分段上传任务/CreateMultipartUpload
  */
 @implementation TOSCreateMultipartUploadInput
@@ -1431,3 +1459,55 @@
 @implementation TOSUploadFileOutput
 @end
 
+@implementation TOSCustomDomainRule
+@end
+
+@implementation TOSPutBucketCustomDomainInput
+
+- (NSDictionary *)queryParamsDict {
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
+    [queryParams setValue:@"" forKey:@"customdomain"]; // PUT customdomain
+    return queryParams;
+}
+
+- (NSData *)requestBody {
+    NSMutableDictionary *root = [NSMutableDictionary dictionary];
+    if (self.tosRule) {
+        NSMutableDictionary *rule = [NSMutableDictionary dictionary];
+        if ([TOSUtil isNotEmptyString:self.tosRule.tosDomain]) {
+            [rule setValue:self.tosRule.tosDomain forKey:@"Domain"];
+        }
+        if ([TOSUtil isNotEmptyString:self.tosRule.tosCertId]) {
+            [rule setValue:self.tosRule.tosCertId forKey:@"CertId"];
+        }
+        if ([TOSUtil isNotEmptyString:self.tosRule.tosProtocol]) {
+            [rule setValue:self.tosRule.tosProtocol forKey:@"Protocol"];
+        }
+        [root setValue:rule forKey:@"CustomDomainRule"];
+    }
+    return [NSJSONSerialization dataWithJSONObject:root options:0 error:NULL];
+}
+
+@end
+
+@implementation TOSPutBucketCustomDomainOutput
+@end
+
+@implementation TOSListBucketCustomDomainInput
+- (NSDictionary *)queryParamsDict {
+    return @{ @"customdomain": @"" };
+}
+@end
+
+@implementation TOSListBucketCustomDomainOutput
+@end
+
+@implementation TOSDeleteBucketCustomDomainInput
+- (NSDictionary *)queryParamsDict {
+    NSString *domain = self.tosDomain ? self.tosDomain : @"";
+    return @{ @"customdomain": domain };
+}
+@end
+
+@implementation TOSDeleteBucketCustomDomainOutput
+@end

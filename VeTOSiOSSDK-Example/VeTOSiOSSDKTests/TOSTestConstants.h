@@ -23,6 +23,7 @@
 #define TOS_ENDPOINT @"endpoint"
 #define TOS_REGION @"region"
 #define TOS_CALLBACK_URL @"callback-url"
+#define CUSTOM_DOMAIN @"custom-domain"
 
 #define TOS_BUCKET @"bucket"
 #define TOS_FILE @"file"

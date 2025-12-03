@@ -58,6 +58,13 @@ TOSHTTPMethodType * const TOSHTTPMethodTypePost = @"POST";
 TOSHTTPMethodType * const TOSHTTPMethodTypeDelete = @"DELETE";
 TOSHTTPMethodType * const TOSHTTPMethodTypeHead = @"HEAD";
 
+TOSCertStatusType * const TOSCertStatusBound = @"CertBound";
+TOSCertStatusType * const TOSCertStatusUnbound = @"CertUnbound";
+TOSCertStatusType * const TOSCertStatusExpired = @"CertExpired";
+
+AuthProtocolType *const AuthProtocolTypeTos = @"tos";
+AuthProtocolType *const AuthProtocolTypeS3 = @"s3";
+
 
 TOSUploadEventType const TOSUploadEventCreateMultipartUploadSucceed = 1; // 创建分段上传任务成功
 TOSUploadEventType const TOSUploadEventCreateMultipartUploadFailed = 2; // 创建分段上传任务失败

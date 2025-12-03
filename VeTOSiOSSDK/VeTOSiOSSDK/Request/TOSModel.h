@@ -341,6 +341,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tosContentDisposition;
 @property (nonatomic, copy) NSString *tosContentEncoding;
 @property (nonatomic, copy) NSString *tosContentLanguage;
+@property (nonatomic, copy) NSString *tosExpiration;
 @property (nonatomic, strong) NSDate *tosExpires;
 @end
 
@@ -609,6 +610,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ 设置对象过期时间/SetObjectExpires
+ */
+@interface TOSSetObjectExpiresInput : TOSInput
+
+@property (nonatomic, copy) NSString *tosBucket; // required
+@property (nonatomic, copy) NSString *tosKey; // required
+@property (nonatomic, copy) NSString *tosVersionID;
+@property (nonatomic, assign) NSInteger objectExpires;
+
+@end
+
+@interface TOSSetObjectExpiresOutput : TOSOutput
+
+@end
 
 /**
  创建分段上传任务/CreateMultipartUpload
@@ -973,6 +989,52 @@ typedef void (^TOSUploadEventListener) (TOSUploadEvent *e);
 @property (nonatomic, copy) NSString *tosSSECAlgorithm;
 @property (nonatomic, copy) NSString *tosSSECKeyMD5;
 @property (nonatomic, copy) NSString *tosEncodingType;
+@end
+
+
+/**
+ * 自定义域名模型/CustomDomainRule
+ */
+@interface TOSCustomDomainRule : NSObject
+@property (nonatomic, copy) NSString *tosCertId;
+@property (nonatomic, copy) TOSCertStatusType *tosCertStatus;
+@property (nonatomic, copy) NSString *tosDomain;
+@property (nonatomic, copy) NSString *tosProtocol;
+@property (nonatomic, assign) BOOL tosForbidden;
+@property (nonatomic, copy) NSString *tosForbiddenReason;
+@end
+
+/**
+ * PutBucketCustomDomain
+ */
+@interface TOSPutBucketCustomDomainInput : TOSInput
+@property (nonatomic, copy) NSString *tosBucket; // required
+@property (nonatomic, strong) TOSCustomDomainRule *tosRule;
+@end
+
+@interface TOSPutBucketCustomDomainOutput : TOSOutput
+@end
+
+/**
+ * ListBucketCustomDomain
+ */
+@interface TOSListBucketCustomDomainInput : TOSInput
+@property (nonatomic, copy) NSString *tosBucket; // required
+@end
+
+@interface TOSListBucketCustomDomainOutput : TOSOutput
+@property (nonatomic, strong) NSArray<TOSCustomDomainRule *> *tosRules;
+@end
+
+/**
+ * DeleteBucketCustomDomain
+ */
+@interface TOSDeleteBucketCustomDomainInput : TOSInput
+@property (nonatomic, copy) NSString *tosBucket; // required
+@property (nonatomic, copy) NSString *tosDomain; // required
+@end
+
+@interface TOSDeleteBucketCustomDomainOutput : TOSOutput
 @end
 
 NS_ASSUME_NONNULL_END
