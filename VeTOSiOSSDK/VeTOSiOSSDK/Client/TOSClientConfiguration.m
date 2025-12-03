@@ -17,7 +17,7 @@
 #import "TOSClientConfiguration.h"
 #import <UIKit/UIKit.h>
 
-NSString *const TOSiOSSDKVersion = @"2.0.0";
+NSString *const TOSiOSSDKVersion = @"2.1.7";
 static NSString *const TOSConfigurationUnknown = @"Unknown";
 
 @implementation TOSClientConfiguration

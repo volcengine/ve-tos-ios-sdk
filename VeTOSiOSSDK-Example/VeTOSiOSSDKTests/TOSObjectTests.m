@@ -51,7 +51,8 @@
     NSString *accessKey = TOS_ACCESSKEY;
     NSString *secretKey = TOS_SECRETKEY;
     TOSCredential *credential = [[TOSCredential alloc] initWithAccessKey:accessKey secretKey:secretKey];
-    TOSEndpoint *tosEndpoint = [[TOSEndpoint alloc] initWithURLString:TOS_ENDPOINT withRegion:TOS_REGION];
+//    TOSEndpoint *tosEndpoint = [[TOSEndpoint alloc] initWithURLString:TOS_ENDPOINT withRegion:TOS_REGION];
+    TOSEndpoint *tosEndpoint = [[TOSEndpoint alloc] initWithURLString:CUSTOM_DOMAIN withRegion:TOS_REGION isCustomDomain:YES];
     TOSClientConfiguration *config = [[TOSClientConfiguration alloc] initWithEndpoint:tosEndpoint credential:credential];
     _client = [[TOSClient alloc] initWithConfiguration:config];
     
@@ -785,6 +786,130 @@
         NSLog(@"tosExpire: %@", headOutput.tosExpires);
         return nil;
     }] waitUntilFinished];
+}
+
+- (void)testAPI_setObjectExpires {
+    TOSPutObjectInput *putInput = [TOSPutObjectInput new];
+    putInput.tosBucket = _privateBucket;
+    putInput.tosKey = _fileNames[0];
+    
+    putInput.tosACL = TOSACLPublicReadWrite;
+    
+    TOSTask *task = [_client putObject:putInput];
+    [task waitUntilFinished];
+    XCTAssertNil(task.error);
+    __block NSString *versionID = nil;
+    
+    TOSHeadObjectInput *headInput = [TOSHeadObjectInput new];
+//    headInput.tosBucket = _privateBucket;
+    headInput.tosKey  = _fileNames[0];
+    task = [_client headObject:headInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSHeadObjectOutput class]]);
+        TOSHeadObjectOutput *headOutput = t.result;
+        XCTAssertEqual(200, headOutput.tosStatusCode);
+        XCTAssertEqual(0, headOutput.tosContentLength);
+        XCTAssertNil(headOutput.tosExpiration);
+        versionID = headOutput.tosVersionID;
+        NSLog(@"tosETag: %@", headOutput.tosETag);
+        NSLog(@"tosLastModified: %@", headOutput.tosLastModified);
+        NSLog(@"tosDeleteMarker: %d", headOutput.tosDeleteMarker);
+        NSLog(@"tosSSECAlgorithm: %@", headOutput.tosSSECAlgorithm);
+        NSLog(@"tosSSECKeyMD5: %@", headOutput.tosSSECKeyMD5);
+        NSLog(@"tosVersionID: %@", headOutput.tosVersionID);
+        NSLog(@"tosWebsiteRedirectLocation: %@", headOutput.tosWebsiteRedirectLocation);
+        NSLog(@"tosObjectType: %@", headOutput.tosObjectType);
+        NSLog(@"tosHashCrc64ecma: %llu", headOutput.tosHashCrc64ecma);
+        NSLog(@"tosStorageClass: %@", headOutput.tosStorageClass);
+        for (id m in headOutput.tosMeta) {
+            NSLog(@"tosMeta, key: %@ - value: %@", m, headOutput.tosMeta[m]);
+        }
+        NSLog(@"tosContentLength: %lld", headOutput.tosContentLength);
+        NSLog(@"tosContentType: %@", headOutput.tosContentType);
+        NSLog(@"tosCacheControl: %@", headOutput.tosCacheControl);
+        NSLog(@"tosContentDisposition: %@", headOutput.tosContentDisposition);
+        NSLog(@"tosContentEncoding: %@", headOutput.tosContentEncoding);
+        NSLog(@"tosContentLanguage: %@", headOutput.tosContentLanguage);
+        NSLog(@"tosExpire: %@", headOutput.tosExpires);
+        return nil;
+    }] waitUntilFinished];
+    
+    
+    TOSSetObjectExpiresInput *setInput = [TOSSetObjectExpiresInput new];
+    setInput.tosBucket = _privateBucket;
+    setInput.tosKey = _fileNames[0];
+    setInput.objectExpires = 3;
+    if (versionID != nil) {
+            setInput.tosVersionID = versionID;
+        }
+    
+    task = [_client setObjectExpires:setInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSSetObjectExpiresOutput class]]);
+        TOSSetObjectExpiresOutput *setOutput = t.result;
+        XCTAssertEqual(200, setOutput.tosStatusCode);
+        return nil;
+    }] waitUntilFinished];
+    
+    
+    
+    task = [_client headObject:headInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSHeadObjectOutput class]]);
+        TOSHeadObjectOutput *headOutput = t.result;
+        XCTAssertEqual(200, headOutput.tosStatusCode);
+        XCTAssertEqual(0, headOutput.tosContentLength);
+        XCTAssertNotNil(headOutput.tosExpiration);
+        return nil;
+    }] waitUntilFinished];
+    
+    
+    setInput.objectExpires = 0;
+    task = [_client setObjectExpires:setInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSSetObjectExpiresOutput class]]);
+        TOSSetObjectExpiresOutput *setOutput = t.result;
+        XCTAssertEqual(200, setOutput.tosStatusCode);
+        return nil;
+    }] waitUntilFinished];
+    
+    task = [_client headObject:headInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSHeadObjectOutput class]]);
+        TOSHeadObjectOutput *headOutput = t.result;
+        XCTAssertEqual(200, headOutput.tosStatusCode);
+        XCTAssertEqual(0, headOutput.tosContentLength);
+        XCTAssertNil(headOutput.tosExpiration);
+        return nil;
+    }] waitUntilFinished];
+    
+    
+}
+
+
+- (void)testSetObjectExpires_InvalidExpires {
+    TOSSetObjectExpiresInput *input = [TOSSetObjectExpiresInput new];
+    input.tosBucket = _privateBucket;
+    input.tosKey = _fileNames[0];
+    input.objectExpires = -1; // invalid
+
+    TOSTask *task = [_client setObjectExpires:input];
+    [task waitUntilFinished];
+
+    XCTAssertNil(task.result);
+    XCTAssertNotNil(task.error);
+    XCTAssertEqual(400, task.error.code);
+    XCTAssertTrue([task.error.domain isEqualToString:TOSClientErrorDomain]);
 }
 
 - (void)testAPI_copyObject {

@@ -122,7 +122,7 @@ static NSObject *uploadLock;
     temComs.scheme = urlComponents.scheme;
     temComs.host = urlComponents.host;
     temComs.port = urlComponents.port;
-    if (bucketName) {
+    if (bucketName && !self.clientConfiguration.tosEndpoint.isCustomDomain) {
         temComs.host = [NSString stringWithFormat:@"%@.%@", bucketName, temComs.host];
     }
     NSString *urlString = temComs.string;
@@ -300,7 +300,7 @@ static NSObject *uploadLock;
         return [TOSTask taskWithError:error];
     }
     
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     // 扩展ASCII码处理
@@ -467,6 +467,53 @@ static NSObject *uploadLock;
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypeGet OperationType:TOSOperationTypeListBuckets];
 }
 
+
+- (TOSTask *)putBucketCustomDomain:(TOSPutBucketCustomDomainInput *)request {
+    TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
+
+    NSError *error = nil;
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain &&![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+
+    requestDelegate.bucket = request.tosBucket;
+    requestDelegate.queryParams = [request queryParamsDict];
+    requestDelegate.body = [request requestBody];
+    requestDelegate.HTTPMethod = TOSHTTPMethodTypePut;
+
+    return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePut OperationType:TOSOperationTypePutBucketCustomDomain];
+}
+
+- (TOSTask *)listBucketCustomDomain:(TOSListBucketCustomDomainInput *)request {
+    TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
+
+    NSError *error = nil;
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+
+    requestDelegate.bucket = request.tosBucket;
+    requestDelegate.queryParams = [request queryParamsDict];
+    requestDelegate.HTTPMethod = TOSHTTPMethodTypeGet;
+
+    return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypeGet OperationType:TOSOperationTypeListBucketCustomDomain];
+}
+
+- (TOSTask *)deleteBucketCustomDomain:(TOSDeleteBucketCustomDomainInput *)request {
+    TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
+
+    NSError *error = nil;
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+
+    requestDelegate.bucket = request.tosBucket;
+    requestDelegate.queryParams = [request queryParamsDict];
+    requestDelegate.HTTPMethod = TOSHTTPMethodTypeDelete;
+
+    return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypeDelete OperationType:TOSOperationTypeDeleteBucketCustomDomain];
+}
+
 @end
 
 @implementation TOSClient (Object)
@@ -475,7 +522,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -494,7 +541,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -513,7 +560,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
 
@@ -530,7 +577,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
 
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -560,7 +607,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -590,7 +637,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -609,7 +656,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
 
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -629,7 +676,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -656,7 +703,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
 
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     
@@ -672,7 +719,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     
@@ -687,7 +734,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -709,7 +756,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -731,7 +778,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -755,7 +802,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -776,7 +823,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -791,6 +838,31 @@ static NSObject *uploadLock;
     return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePost OperationType:TOSOperationTypeSetObjectMeta];
 }
 
+- (TOSTask *)setObjectExpires:(TOSSetObjectExpiresInput *)request {
+    TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
+    
+    NSError *error = nil;
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+    if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
+        return [TOSTask taskWithError:error];
+    }
+    
+    if (request.objectExpires < 0) {
+            NSDictionary *userInfo = @{TOSErrorMessageTOKEN: @"tos: invalid objectExpires, must be >= 0"};
+            error = [NSError errorWithDomain:TOSClientErrorDomain code:400 userInfo:userInfo];
+            return [TOSTask taskWithError:error];
+        }
+    
+    requestDelegate.bucket = request.tosBucket;
+    requestDelegate.object = request.tosKey;
+    requestDelegate.queryParams = [request queryParamsDict];
+    requestDelegate.body = [request requestBody];
+    
+    return [self invokeRequest:requestDelegate HTTPMethod:TOSHTTPMethodTypePost OperationType:TOSOperationTypeSetObjectExpires];
+}
+
 @end
 
 @implementation TOSClient (MultipartUpload)
@@ -799,7 +871,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -818,7 +890,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -841,7 +913,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -862,7 +934,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -887,7 +959,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -907,7 +979,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -925,7 +997,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {
@@ -953,7 +1025,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     
@@ -967,7 +1039,7 @@ static NSObject *uploadLock;
     TOSNetworkingRequestDelegate *requestDelegate = [[TOSNetworkingRequestDelegate alloc] init];
     
     NSError *error = nil;
-    if (![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
+    if (!self.clientConfiguration.tosEndpoint.isCustomDomain && ![TOSUtil isValidBucketName:request.tosBucket withError:&error]) {
         return [TOSTask taskWithError:error];
     }
     if (![TOSUtil isValidObjectName:request.tosKey withError:&error]) {

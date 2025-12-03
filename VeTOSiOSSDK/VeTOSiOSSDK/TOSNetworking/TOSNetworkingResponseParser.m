@@ -283,6 +283,8 @@
                         output.tosExpires = [formater dateFromString:obj];
                     } else if ([kk hasPrefix:@"x-tos-meta-"]) {
                         [metaDict setValue:[obj stringByRemovingPercentEncoding] forKey:[kk stringByRemovingPercentEncoding]];
+                    } else if ([kk isEqualToString:@"x-tos-expiration"]) {
+                        output.tosExpiration = obj;
                     }
                 }];
                 output.tosMeta = metaDict;
@@ -703,6 +705,13 @@
             }
             return output;
         }
+        case TOSOperationTypeSetObjectExpires:{
+            TOSSetObjectExpiresOutput *output = [TOSSetObjectExpiresOutput new];
+            if (_response) {
+                [self parseNetworkingResponseCommonHeader:_response toOutputObject:output];
+            }
+            return output;
+        }
         case TOSOperationTypeCreateMultipartUpload: {
             TOSCreateMultipartUploadOutput *output = [TOSCreateMultipartUploadOutput new];
             if (_response) {
@@ -952,6 +961,46 @@
                         }
                     }
                 }
+            }
+            return output;
+        }
+        case TOSOperationTypePutBucketCustomDomain:{
+            TOSPutBucketCustomDomainOutput *output = [TOSPutBucketCustomDomainOutput new];
+            if (_response) {
+                [self parseNetworkingResponseCommonHeader:_response toOutputObject:output];
+            }
+            return output;
+        }
+        case TOSOperationTypeListBucketCustomDomain: {
+            TOSListBucketCustomDomainOutput *output = [TOSListBucketCustomDomainOutput new];
+            if (_response) {
+                [self parseNetworkingResponseCommonHeader:_response toOutputObject:output];
+            }
+            if (_receivedData) {
+                id body = [NSJSONSerialization JSONObjectWithData:_receivedData options:0 error:NULL];
+                if (body) {
+                    NSMutableArray *rules = [NSMutableArray array];
+                    if (body[@"CustomDomainRules"] && body[@"CustomDomainRules"] != [NSNull null]) {
+                        for (id item in body[@"CustomDomainRules"]) {
+                            TOSCustomDomainRule *rule = [TOSCustomDomainRule new];
+                            rule.tosDomain = item[@"Domain"];
+                            rule.tosCertId = item[@"CertId"];
+                            rule.tosCertStatus = item[@"CertStatus"];
+                            rule.tosForbidden = [item[@"Forbidden"] boolValue];
+                            rule.tosForbiddenReason = item[@"ForbiddenReason"];
+                            rule.tosProtocol = item[@"Protocol"];
+                            [rules addObject:rule];
+                        }
+                    }
+                    output.tosRules = rules;
+                }
+            }
+            return output;
+        }
+        case TOSOperationTypeDeleteBucketCustomDomain: {
+            TOSDeleteBucketCustomDomainOutput *output = [TOSDeleteBucketCustomDomainOutput new];
+            if (_response) {
+                [self parseNetworkingResponseCommonHeader:_response toOutputObject:output];
             }
             return output;
         }

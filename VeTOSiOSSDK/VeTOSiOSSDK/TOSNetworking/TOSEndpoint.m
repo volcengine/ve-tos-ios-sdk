@@ -65,5 +65,15 @@ static NSDictionary<NSString *, NSString *> *TOSSupportedRegion = nil;
     return  [self initWithURL:[[NSURL alloc] initWithString:URLString]];
 }
 
+- (instancetype)initWithURLString:(NSString *)URLString
+                       withRegion:(NSString *)region
+                 isCustomDomain:(BOOL)isCustomDomain {
+    if (self = [self initWithURLString:URLString]) {
+        _region = region;
+        _isCustomDomain = isCustomDomain;
+    }
+    return self;
+}
+
 
 @end
