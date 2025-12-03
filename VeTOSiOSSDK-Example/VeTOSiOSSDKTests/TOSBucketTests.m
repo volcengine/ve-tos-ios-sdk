@@ -530,4 +530,134 @@
     
 }
 
+- (void)testAPI_customDomain{
+    NSString *bucket = TOS_BUCKET;
+    TOSCreateBucketInput *createInput = [TOSCreateBucketInput new];
+    createInput.tosBucket = bucket;
+    TOSTask *task = [_client createBucket:createInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSCreateBucketOutput class]]);
+        TOSCreateBucketOutput *createOutput = t.result;
+        XCTAssertEqual(200, createOutput.tosStatusCode);
+        return nil;
+    }] waitUntilFinished];
+    
+    TOSHeadBucketInput *headInput = [TOSHeadBucketInput new];
+    headInput.tosBucket = TOS_BUCKET;
+    task = [_client headBucket:headInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSHeadBucketOutput class]]);
+        TOSHeadBucketOutput *headOutput = t.result;
+        XCTAssertEqual(200, headOutput.tosStatusCode);
+        XCTAssertTrue([TOS_REGION isEqualToString:headOutput.tosRegion]);
+        XCTAssertTrue([TOSStorageClassStandard isEqualToString:headOutput.tosStorageClass]);
+        return nil;
+    }] waitUntilFinished];
+    
+    __block NSInteger ruleCount = 0;
+    
+    TOSPutBucketCustomDomainInput *input = [TOSPutBucketCustomDomainInput new];
+    input.tosBucket = TOS_BUCKET;
+    TOSCustomDomainRule *rule = [TOSCustomDomainRule new];
+    rule.tosDomain = @"example.ios.sdk.com";
+//    rule.tosCertId = @"id123";
+    rule.tosProtocol = AuthProtocolTypeTos;
+    input.tosRule = rule;
+    
+    task = [_client putBucketCustomDomain:input];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutBucketCustomDomainOutput class]]);
+        TOSPutBucketCustomDomainOutput *output = t.result;
+        XCTAssertEqual(200, output.tosStatusCode);
+        ruleCount+=1;
+        return nil;
+    }] waitUntilFinished];
+    
+    TOSListBucketCustomDomainInput *listInput = [TOSListBucketCustomDomainInput new];
+    listInput.tosBucket = TOS_BUCKET;
+    task = [_client listBucketCustomDomain:listInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSListBucketCustomDomainOutput class]]);
+        TOSListBucketCustomDomainOutput *listOutput = t.result;
+        XCTAssertEqual(200, listOutput.tosStatusCode);
+        XCTAssertNotNil(listOutput.tosRules);
+        XCTAssertEqual(ruleCount, listOutput.tosRules.count);
+        return nil;
+    }] waitUntilFinished];
+    
+    input.tosRule.tosProtocol = AuthProtocolTypeS3;
+    input.tosRule.tosDomain = @"example.ios.s3.sdk.com";
+    task = [_client putBucketCustomDomain:input];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSPutBucketCustomDomainOutput class]]);
+        TOSPutBucketCustomDomainOutput *output = t.result;
+        XCTAssertEqual(200, output.tosStatusCode);
+        ruleCount+=1;
+        return nil;
+    }] waitUntilFinished];
+    
+    task = [_client listBucketCustomDomain:listInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSListBucketCustomDomainOutput class]]);
+        TOSListBucketCustomDomainOutput *listOutput = t.result;
+        XCTAssertEqual(200, listOutput.tosStatusCode);
+        XCTAssertNotNil(listOutput.tosRules);
+        XCTAssertEqual(ruleCount, listOutput.tosRules.count);
+        return nil;
+    }] waitUntilFinished];
+    
+    TOSDeleteBucketCustomDomainInput *deleteInput = [TOSDeleteBucketCustomDomainInput new];
+    deleteInput.tosBucket = TOS_BUCKET;
+    deleteInput.tosDomain = @"example.ios.sdk.com";
+    task = [_client deleteBucketCustomDomain:deleteInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSDeleteBucketCustomDomainOutput class]]);
+        TOSDeleteBucketCustomDomainOutput *deleteOutput = t.result;
+        XCTAssertEqual(200, deleteOutput.tosStatusCode);
+        ruleCount-=1;
+        return nil;
+    }] waitUntilFinished];
+    
+    
+    task = [_client listBucketCustomDomain:listInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSListBucketCustomDomainOutput class]]);
+        TOSListBucketCustomDomainOutput *listOutput = t.result;
+        XCTAssertEqual(200, listOutput.tosStatusCode);
+        XCTAssertNotNil(listOutput.tosRules);
+        XCTAssertEqual(ruleCount, listOutput.tosRules.count);
+        return nil;
+    }] waitUntilFinished];
+    
+    deleteInput.tosDomain = @"example.ios.s3.sdk.com";
+    task = [_client deleteBucketCustomDomain:deleteInput];
+    [[task continueWithBlock:^id _Nullable(TOSTask * _Nonnull t) {
+        XCTAssertNil(t.error);
+        XCTAssertNotNil(t.result);
+        XCTAssertTrue([t.result isKindOfClass:[TOSDeleteBucketCustomDomainOutput class]]);
+        TOSDeleteBucketCustomDomainOutput *deleteOutput = t.result;
+        XCTAssertEqual(200, deleteOutput.tosStatusCode);
+        ruleCount-=1;
+        return nil;
+    }] waitUntilFinished];
+    
+    [TOSTestUtil cleanBucket:bucket withClient:_client];
+}
+
 @end

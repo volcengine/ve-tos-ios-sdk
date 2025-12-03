@@ -35,6 +35,8 @@ typedef NSString TOSCannedType;
 typedef NSString TOSHTTPMethodType;
 typedef int TOSUploadEventType;
 typedef int TOSDownloadEventType;
+typedef NSString TOSCertStatusType;
+typedef NSString AuthProtocolType;
 
 extern TOSStorageClassType * const TOSStorageClassStandard;
 extern TOSStorageClassType * const TOSStorageClassIa;
@@ -70,6 +72,12 @@ extern TOSHTTPMethodType * const TOSHTTPMethodTypePut;
 extern TOSHTTPMethodType * const TOSHTTPMethodTypePost;
 extern TOSHTTPMethodType * const TOSHTTPMethodTypeDelete;
 extern TOSHTTPMethodType * const TOSHTTPMethodTypeHead;
+
+extern TOSCertStatusType * const TOSCertStatusBound;
+extern TOSCertStatusType * const TOSCertStatusUnbound;
+extern TOSCertStatusType * const TOSCertStatusExpired;
+extern AuthProtocolType * const AuthProtocolTypeTos;
+extern AuthProtocolType * const AuthProtocolTypeS3;
 
 extern TOSUploadEventType const TOSUploadEventCreateMultipartUploadSucceed;
 extern TOSUploadEventType const TOSUploadEventCreateMultipartUploadFailed;
@@ -131,6 +139,10 @@ typedef NS_ENUM(NSInteger, TOSOperationType) {
     TOSOperationTypeListMultipartUploads,
     TOSOperationTypeListParts,
     TOSOperationTypePreSignedURL,
+    TOSOperationTypeSetObjectExpires,
+    TOSOperationTypePutBucketCustomDomain,
+    TOSOperationTypeListBucketCustomDomain,
+    TOSOperationTypeDeleteBucketCustomDomain,
 };
 
 typedef NS_ENUM(NSInteger, TOSHTTPMethod) {

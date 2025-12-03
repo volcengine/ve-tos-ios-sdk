@@ -25,11 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *region;
 @property (nonatomic, readonly) NSString *endpoint;
 @property (nonatomic, readonly) NSURL *URL;
+@property (nonatomic, readonly, assign) BOOL isCustomDomain;
 
 - (instancetype)initWithURLString:(NSString *)URLString withRegion: (NSString *)region;
 - (instancetype)initWithRegionName:(NSString *)region;
 - (instancetype)initWithURL:(NSURL *)URL;
 - (instancetype)initWithURLString:(NSString *)URLString;
+- (instancetype)initWithURLString:(NSString *)URLString withRegion:(NSString *)region isCustomDomain:(BOOL)isCustomDomain;
 
 @end
 

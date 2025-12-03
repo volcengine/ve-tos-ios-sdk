@@ -52,6 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (TOSTask *)deleteBucket:(TOSDeleteBucketInput *)request;
 - (TOSTask *)listBuckets:(TOSListBucketsInput *)request;
 
+- (TOSTask *)putBucketCustomDomain:(TOSPutBucketCustomDomainInput *)request;
+- (TOSTask *)listBucketCustomDomain:(TOSListBucketCustomDomainInput *)request;
+- (TOSTask *)deleteBucketCustomDomain:(TOSDeleteBucketCustomDomainInput *)request;
+
 @end
 
 @interface TOSClient (Object)
@@ -71,6 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (TOSTask *)putObjectAcl:(TOSPutObjectACLInput *)request;
 - (TOSTask *)setObjectMeta:(TOSSetObjectMetaInput *)request;
 - (TOSTask *)putObjectFromStream:(TOSPutObjectFromStreamInput *)request;
+- (TOSTask *)setObjectExpires:(TOSSetObjectExpiresInput *)request;
 
 @end
 

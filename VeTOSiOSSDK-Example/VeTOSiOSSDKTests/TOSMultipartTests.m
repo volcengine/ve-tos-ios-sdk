@@ -254,6 +254,8 @@
     XCTAssertNil(task.error);
     XCTAssertNotNil(task.result);
     TOSHeadObjectOutput *headOutput = task.result;
+    NSLog(@"head version: %@",headOutput.tosVersionID);
+    NSLog(@"com version: %@",comOutput.tosVersionID);
     XCTAssertEqual(headOutput.tosVersionID, comOutput.tosVersionID);
 }
 
