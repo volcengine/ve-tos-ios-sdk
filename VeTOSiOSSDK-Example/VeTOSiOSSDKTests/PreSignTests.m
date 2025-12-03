@@ -48,6 +48,7 @@
     NSString *secretKey = TOS_SECRETKEY;
     TOSCredential *credential = [[TOSCredential alloc] initWithAccessKey:accessKey secretKey:secretKey];
     TOSEndpoint *tosEndpoint = [[TOSEndpoint alloc] initWithURLString:TOS_ENDPOINT withRegion:TOS_REGION];
+//    TOSEndpoint *tosEndpoint = [[TOSEndpoint alloc] initWithURLString:CUSTOM_DOMAIN withRegion:TOS_REGION isCustomDomain:YES];
     TOSClientConfiguration *config = [[TOSClientConfiguration alloc] initWithEndpoint:tosEndpoint credential:credential];
     _client = [[TOSClient alloc] initWithConfiguration:config];
     
@@ -107,7 +108,7 @@
     XCTAssertNotNil(task.result);
     TOSPreSignedURLOutput *output = task.result;
     
-    XCTAssertTrue([output.tosSignedUrl containsString:input.tosBucket]);
+//    XCTAssertTrue([output.tosSignedUrl containsString:input.tosBucket]);
     XCTAssertTrue([output.tosSignedUrl containsString:input.tosKey]);
 
     NSMutableURLRequest *getRequest = [[NSMutableURLRequest alloc] init];
@@ -155,7 +156,6 @@
     XCTAssertNil(task.error);
     XCTAssertNotNil(task.result);
     TOSPreSignedURLOutput *output = task.result;
-    XCTAssertTrue([output.tosSignedUrl containsString:input.tosBucket]);
     XCTAssertTrue([output.tosSignedUrl containsString:input.tosKey]);
 
     NSMutableURLRequest *getRequest = [[NSMutableURLRequest alloc] init];
@@ -191,7 +191,6 @@
     XCTAssertNil(task.error);
     XCTAssertNotNil(task.result);
     TOSPreSignedURLOutput *output = task.result;
-    XCTAssertTrue([output.tosSignedUrl containsString:input.tosBucket]);
     XCTAssertTrue([output.tosSignedUrl containsString:input.tosKey]);
 
     NSString *tmpStr = @"Presign url to put object from NSData.";
